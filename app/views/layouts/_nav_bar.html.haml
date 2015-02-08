@@ -1,0 +1,9 @@
+%nav#top-nav-bar.navbar.navbar-bav.navbar-default.nav-justified
+  .container-fluid
+    %ul.nav.nav-pills.nav-justified
+      %li{:role => "presentation", class: "#{'active' if selected && selected == 'Home'}"}
+        %a{:href => "#"} Home
+      %li{:role => "presentation", class: "#{'active' if selected && selected == 'Profile'}"}
+        %a{:href => "#"} Profile
+      %li{:role => "presentation", class: "#{'active' if selected && selected == 'Messages'}"}
+        %a{:href => "#"} Messages
