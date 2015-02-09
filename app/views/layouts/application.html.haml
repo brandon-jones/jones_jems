@@ -4,7 +4,7 @@
     - if @subsection
       %title #{ @subsection ? @subsection + ' - ' : '' } Jones Jems
     - elsif params["action"]
-      %title #{ params["action"].capitalize } - Jones Jems
+      %title #{ params["action"].gsub('_',' ').split.map(&:capitalize).join(' ') } - Jones Jems
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
     = javascript_include_tag 'application', 'data-turbolinks-track' => false
     = csrf_meta_tags
@@ -17,11 +17,12 @@
   %body
     .container-fluid
       .row
-        .col-md-10.col-md-offset-1.grey
+        .col-sm-10.col-sm-offset-1.grey
           #header.row
-            .col-md-8.col-md-offset-2
-          - unless @header_image && @header_image == "false"
-            = image_tag("top_image.png", :alt => "banner", :id => 'top-image', class: 'img-responsive')
-            the image is here
-          = render partial: 'layouts/nav_bar', locals: { selected: params["action"].capitalize || @subsection}
-          = yield
+            .col-sm-8.col-sm-offset-2
+              - unless @header_image && @header_image == "false"
+                = image_tag("top_image.png", :alt => "banner", :id => 'top-image', class: 'img-responsive')
+          .row
+            .col-sm-8.col-sm-offset-2
+              = render partial: 'layouts/nav_bar', locals: { selected: params["action"].capitalize || @subsection}
+              = yield

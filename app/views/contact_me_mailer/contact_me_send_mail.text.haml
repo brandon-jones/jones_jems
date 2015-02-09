@@ -1,0 +1,15 @@
+Hello Colleen #{@name} has a question
+
+Person: 
+= @name
+
+Email:
+= @email
+
+- if @phone_number
+	Phone
+	= @phone_number
+	texting: #{@texting_ok}
+
+What they say:
+= @body

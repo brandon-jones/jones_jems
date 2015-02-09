@@ -75,3 +75,25 @@ div {
 #top-nav-bar {
   padding-top: 5px;
 }
+
+.phone-radio-group {
+  background-color: white;
+  border: 1px solid;
+  border-radius: 5px;
+  border-color: white;
+  padding: 5px 0 5px 5px; 
+  height: 32px;
+  position: relative;
+}
+
+
+.radio-button { 
+  padding-top: 0 !important;
+}
+
+#top-image {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5px;
+}
