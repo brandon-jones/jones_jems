@@ -10,6 +10,12 @@ Rails.application.routes.draw do
   get 'contact_me', to: 'static_pages#contact_me'
   post 'contact_me', to: 'static_pages#contact_me'
 
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

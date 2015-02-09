@@ -7,7 +7,12 @@ class ContactMeMailer < ActionMailer::Base
     @phone_number = phone_number.first
     @texting_ok = texting_ok
     @question = question
-    mail(to: "brandon@brjcoding.com", subject: "#{@name} has a question")
+    if Rails.env == 'development'
+    	to = "brandon@brjcoding.com"
+    else
+    	to = "colleen@jonesjems.com"
+    end
+    mail(to: to, subject: "#{@name} has a question")
   end
 
 end

@@ -7,13 +7,17 @@
       %ul
         - @user.errors.full_messages.each do |message|
           %li= message
-  .field
-    = f.label :email
+  .form-group
+    = f.label 'Email'
     %br
-      = f.text_field :email
-  .field
-    = f.label :password_digest
+      = f.text_field :email, class: 'form-control'
+  .form-group
+    = f.label 'Password'
     %br
-      = f.text_field :password_digest
-  .actions
-    = f.submit
+      = f.password_field :password, class: 'form-control'
+  .form-group
+    = f.label 'Password Conrimation'
+    %br
+      = f.password_field :password_confirmation, class: 'form-control'
+  .form-group
+    = f.submit 'Submit', class: 'btn btn-primary btn-lg'

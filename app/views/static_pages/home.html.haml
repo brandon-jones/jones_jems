@@ -1,9 +1,14 @@
+
 %h1.text-center Home
-=flash_msg
-%strong
-	Who am I
-A motherfucking superhero
-%br
-%strong
-	Mission:
-Kick ass and take no names
+.row
+  .col-sm-8.col-sm-offset-2
+    =flash_msg
+    %strong
+      Who am I
+    A motherfucking superhero
+    %br
+    %strong
+      Mission:
+    Kick ass and take no names  
+  .col-sm-2
+    = render partial: 'mini_about_me'

@@ -1,0 +1,24 @@
+- if current_user
+  %a.dropdown-toggle#user-auth.btn.btn-default{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    = current_user.username
+    %span.caret
+  %ul.dropdown-menu{:role => "menu"}
+    %li
+      %a{:href => "#{user_path(current_user.id)}"} 
+        Profile
+    %li.divider
+    - if current_user.super_admin?
+      %li
+        %a{:href => "/admin_panel"} 
+          Admin Panel
+      %li.divider
+    %li
+      %a{:href => "#{logout_path}"} 
+        Logout
+- else
+  %a.dropdown-toggle#user-auth.btn.btn-default{"data-toggle" => "dropdown", :href => "#"}
+    Sign In
+    %strong.caret
+  .dropdown-menu{:style => "padding: 10px;min-width:240px;"}
+    .login-box
+      = render partial: 'sessions/new'

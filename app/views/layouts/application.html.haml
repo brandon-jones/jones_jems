@@ -21,8 +21,18 @@
           #header.row
             .col-sm-8.col-sm-offset-2
               - unless @header_image && @header_image == "false"
-                = image_tag("top_image.png", :alt => "banner", :id => 'top-image', class: 'img-responsive')
+                = image_tag("top_image_p1.png", :alt => "banner", :id => 'top-image', class: 'img-responsive')
+            .col-sm-2
+              = render partial: 'layouts/user_info'
           .row
             .col-sm-8.col-sm-offset-2
               = render partial: 'layouts/nav_bar', locals: { selected: params["action"].capitalize || @subsection}
-              = yield
+          - if params["action"] == "home"
+            .row 
+              .col-sm-12
+                = yield
+          -else
+            .row
+              .col-sm-8.col-sm-offset-2
+                = yield
+

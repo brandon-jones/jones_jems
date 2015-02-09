@@ -42,11 +42,9 @@ div {
 .field_with_errors {
   padding: 2px;
   background-color: red;
-  display: table;
 }
 
 #error_explanation {
-  width: 450px;
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 0;
@@ -96,4 +94,12 @@ div {
   margin-left: auto;
   margin-right: auto;
   padding-top: 5px;
+}
+
+#user-auth {
+  width: 100%;
+}
+
+.login-box {
+  padding-top: .3em;
 }
