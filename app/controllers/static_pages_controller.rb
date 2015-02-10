@@ -3,6 +3,10 @@ class StaticPagesController < ApplicationController
 	def home
 	end
 
+	def admin_panel
+
+	end
+
 	def contact_me
 		if params["commit"] && params["commit"] == 'Send Question'
       ContactMeMailer.contact_me_send_mail(params['name'],params['email'],params['phone_number'],params['texting_ok'], params["question"]).deliver
