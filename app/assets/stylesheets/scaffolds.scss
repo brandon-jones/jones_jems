@@ -1,11 +1,14 @@
 body {
-  background-color: #EEEEEE !important;
+  background-color: #f3e5ff !important;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
-  margin-top: 51px !important;
+  min-height: 100vh !important;
+  padding-top: 51px !important;
 }
+
+
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -126,12 +129,107 @@ img#brand-icon {
   top: -5px;
 }
 
-#page-title {
-  margin-bottom: 0;
-}
-
 div#header.row.jumbotron {
   height:100vh;
   margin-bottom: 0;
+  background-color: #f3e5ff !important;
 }
 
+div#page-title.row.jumbotron {
+  margin-bottom: 0;
+  background-color: #f3e5ff !important;
+}
+
+.white {
+  background-color: white;
+}
+
+.lp {
+  background-color: #efdbff;
+  padding: 1em 1em 1em 1em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.dp {
+  background-color: #bd59ff;
+  padding: 1em 1em 1em 1em;
+}
+
+.very-light-grey {
+  background-color: #e0e0e0;
+}
+
+.anchor {
+  min-height: 51px;
+}
+
+footer {
+  min-height: 5em;
+}
+
+#top {
+  min-height: 51px;
+}
+
+.faq-questions {
+  background-color: #efdbff;
+  padding: 1em 1em 1em 1em;
+  line-height: 2em;
+}
+
+.faq-question {
+  background-color: #bd59ff;
+  padding: 1em 1em 1em 1em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 1em 1em 1em 1em;
+}
+
+.faq-answer {
+  background-color: #efdbff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 1em 1em 1em 1em;
+
+}
+
+.round-corners {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.PopupPanel
+{
+
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+
+    border: solid 1px black;
+    background-color: #383838 !important;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background-color: white;
+    z-index: 100;
+
+    text-align: center;
+    height: 100px;
+    margin-top: -50px;
+
+    width: 300px;
+    margin-left: -150px;
+
+    font-size: 1.5em;
+}
+
+#mymodal-body {
+  text-align: center;
+  background-color: #383838 !important;
+  font-size: 1.5em;
+}

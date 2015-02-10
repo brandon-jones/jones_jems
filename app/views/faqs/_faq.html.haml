@@ -1,0 +1,9 @@
+- @faqs.each do |faq|
+  %p.faq-question{id: "question-#{faq.id}"}
+    %strong
+      Q
+    = faq.question
+  %p.faq-answer
+    %strong
+      A
+    = faq.answer

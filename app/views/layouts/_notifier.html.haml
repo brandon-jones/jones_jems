@@ -1,0 +1,21 @@
+:javascript
+  $(document).ready(function() {
+    $('#myModal').modal({
+     show: true,
+    })
+
+    setTimeout(function(){
+      console.log($('#myModal'))
+      $('#myModal').modal('hide');
+    }, 1500);
+
+  });
+/ Modal
+#myModal.modal.fade{"aria-" => "", "aria-hidden" => "true", :labelledby => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-body#mymodal-body
+        - flash.each do |key, value|
+          %div.flash{ class: "#{key}", id: "#{key}" }
+            =value
+        

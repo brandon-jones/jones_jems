@@ -1,0 +1,11 @@
+%h1.text-center Frequenty Asked Questions
+%br
+%p.faq-questions
+  - @faqs.each do |fq|
+    %a{href: "#question-#{fq.id}"}
+      = fq.question
+      %br
+#faq-section
+  = render partial: 'faq'
+%p
+  = link_to "To The Top!", '#top'
