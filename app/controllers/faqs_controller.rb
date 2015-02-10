@@ -4,6 +4,7 @@ class FaqsController < ApplicationController
   # GET /faqs
   # GET /faqs.json
   def index
+    @subsection = 'FAQ'
     if params["question"]
       @faqs = []
       Faq.all.order(:question).each do |faq|

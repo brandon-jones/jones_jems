@@ -203,31 +203,6 @@ footer {
   border-radius: 10px;
 }
 
-.PopupPanel
-{
-
-    -webkit-border-radius: 25px;
-    -moz-border-radius: 25px;
-    border-radius: 25px;
-
-    border: solid 1px black;
-    background-color: #383838 !important;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    background-color: white;
-    z-index: 100;
-
-    text-align: center;
-    height: 100px;
-    margin-top: -50px;
-
-    width: 300px;
-    margin-left: -150px;
-
-    font-size: 1.5em;
-}
-
 #mymodal-body {
   text-align: center;
   background-color: #383838 !important;
