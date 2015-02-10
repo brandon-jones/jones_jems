@@ -10,29 +10,29 @@
     = csrf_meta_tags
     %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css", :rel => "stylesheet"}
     %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css", :rel => "stylesheet"}
-    %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", :rel => "stylesheet"}/
+    %link{:href => "//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css", :rel => "stylesheet"}
+    = favicon_link_tag 'logo.ico'
     %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"}
     %script{:src => "https://js.braintreegateway.com/v2/braintree.js"}
   %body
+    = render partial: 'layouts/top_nav'
+    - id = 'page-title'
+    - pic_id = 'title-image'
+    - if params["action"] == "home"
+      - id = 'header'
+      - pic_id = 'top-image'
+    .row.jumbotron{id: id}
+      - unless @header_image && @header_image == "false"
+        = image_tag("top_image.png", :alt => "banner", :id => pic_id, class: 'img-responsive')
     .container-fluid
       .row
         .col-sm-10.col-sm-offset-1.grey
-          #header.row
-            .col-sm-8.col-sm-offset-2
-              - unless @header_image && @header_image == "false"
-                = image_tag("top_image_p1.png", :alt => "banner", :id => 'top-image', class: 'img-responsive')
-            .col-sm-2
-              = render partial: 'layouts/user_info'
-          .row
-            .col-sm-8.col-sm-offset-2
-              = render partial: 'layouts/nav_bar', locals: { selected: params["action"].capitalize || @subsection}
           - if params["action"] == "home"
             .row 
               .col-sm-12
                 = yield
-          -else
+          - else
             .row
               .col-sm-8.col-sm-offset-2
                 = yield
-

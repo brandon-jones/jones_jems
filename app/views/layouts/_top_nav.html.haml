@@ -1,0 +1,49 @@
+%nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"}
+        = image_tag("logo.png", :alt => "Brand", id: 'brand-icon')
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      - selected = selected ? selected.gsub('_',' ').split.map(&:capitalize).join(' ') : nil
+      %ul.nav.navbar-nav
+        %li{:role => "presentation", class: "#{'active' if selected == t('contact_me')}"}
+          %a{:href => "/contact_me"}
+            = t('contact_me')
+        %li{:role => "presentation", class: "#{'active' if selected == t('contact_me')}"}
+          %a{:href => "/about_me"}
+            = t('about_me')
+      %ul.nav.navbar-nav.navbar-right
+        - if current_user
+          %li.dropdown
+            %a.dropdown-toggle{"aria-expanded" => "false", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+              = current_user.email
+              %span.caret
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#{user_path(current_user.id)}"} 
+                  Profile
+              %li.divider
+              - if current_user.is_admin?
+                %li
+                  %a{:href => "/admin_panel"} 
+                    Admin Panel
+                %li.divider
+              %li
+                %a{:href => "#{logout_path}"} 
+                  = t('logout')
+        - else
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+              Sign In
+              %strong.caret
+            .dropdown-menu{:style => "padding: 10px;min-width:240px;"}
+              .login-box
+                = render partial: 'sessions/new'
+                = link_to 'Sign Up/New User', signup_path

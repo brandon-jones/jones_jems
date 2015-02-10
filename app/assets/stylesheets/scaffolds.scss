@@ -1,9 +1,10 @@
 body {
-  background-color: #fff;
+  background-color: #EEEEEE !important;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
+  margin-top: 51px !important;
 }
 
 p, ol, ul, td {
@@ -37,6 +38,11 @@ div {
 
 #notice {
   color: green;
+}
+
+.error, .login_error {
+  color: red;
+  padding-bottom: 5px;
 }
 
 .field_with_errors {
@@ -89,11 +95,20 @@ div {
   padding-top: 0 !important;
 }
 
-#top-image {
+img#title-image {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 5px;
+  position: relative;
+  vertical-align: middle;
+}
+
+img#top-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
 }
 
 #user-auth {
@@ -103,3 +118,20 @@ div {
 .login-box {
   padding-top: .3em;
 }
+
+img#brand-icon {
+  width: 32px;
+  height: auto;
+  position: relative;
+  top: -5px;
+}
+
+#page-title {
+  margin-bottom: 0;
+}
+
+div#header.row.jumbotron {
+  height:100vh;
+  margin-bottom: 0;
+}
+

@@ -20,5 +20,6 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  home: "Home"
-  contact_me: "Contact Me"
+  home: Home
+  contact_me: Contact Me
+  about_me: About Me

@@ -1,10 +1,10 @@
 class ApplicationController < ActionController::Base
+  include ActualBack
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :debug_title if Rails.env.development?
   before_filter :actual_back
-  include ActualBack
 
   def debug_header(text)
     bars = "=" *80

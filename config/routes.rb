@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'contact_me', to: 'static_pages#contact_me'
   post 'contact_me', to: 'static_pages#contact_me'
+  get 'about_me', to: 'static_pages#about_me'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
