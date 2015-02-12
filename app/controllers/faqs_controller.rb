@@ -1,6 +1,6 @@
 class FaqsController < ApplicationController
   before_action :set_faq, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticated_admin?, except: [:index]
   # GET /faqs
   # GET /faqs.json
   def index
@@ -63,9 +63,10 @@ class FaqsController < ApplicationController
   # DELETE /faqs/1
   # DELETE /faqs/1.json
   def destroy
+    @path = false
     @faq.destroy
     respond_to do |format|
-      format.html { redirect_to faqs_url, notice: 'Faq was successfully destroyed.' }
+      format.html { redirect_to last_path, notice: 'Faq was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

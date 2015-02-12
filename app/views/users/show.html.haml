@@ -1,7 +1,7 @@
-%p#notice= notice
-%p
+%p.padding-top
   %strong Email:
   = @user.email
-= link_to 'Edit', edit_user_path(@user)
+- if current_user && (current_user.admin? || current_user == @user)
+  = link_to 'Edit', edit_user_path(@user)
 |
 = link_to 'Back', last_path

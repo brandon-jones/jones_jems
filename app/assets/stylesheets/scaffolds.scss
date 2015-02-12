@@ -77,6 +77,7 @@ div {
 
 .grey {
   background-color: #adadad;
+  min-height: 20em !important;
 }
 
 #top-nav-bar {
@@ -177,6 +178,7 @@ footer {
   background-color: #efdbff;
   padding: 1em 1em 1em 1em;
   line-height: 2em;
+  margin-bottom: 2em;
 }
 
 .faq-question {
@@ -184,17 +186,22 @@ footer {
   padding: 1em 1em 1em 1em;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
   padding: 1em 1em 1em 1em;
+  border-top: 1px solid black;
+  border-right: 1px solid black; 
+  border-left: 1px solid black;
 }
 
 .faq-answer {
   background-color: #efdbff;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  border-radius: 10px;
+  border-radius: 0 0 10px 10px;
   padding: 1em 1em 1em 1em;
-
+  border-bottom: 1px solid black;
+  border-right: 1px solid black; 
+  border-left: 1px solid black;
 }
 
 .round-corners {
@@ -207,4 +214,31 @@ footer {
   text-align: center;
   background-color: #383838 !important;
   font-size: 1.5em;
+}
+
+p.inline {
+    display: inline;
+}
+
+.question-section {
+  margin-bottom: 2em;
+}
+
+.faq-edit-answer {
+  min-height: 20em;
+}
+
+.padding-top {
+  padding-top: 5em;
+}
+
+hr.question-hr {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+span.faq-goto {
+  margin-top: -51px;        /* Size of fixed header */
+  padding-bottom: 51px; 
+  display: inline-block;
 }

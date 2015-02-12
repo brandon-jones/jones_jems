@@ -10,7 +10,4 @@ class User < ActiveRecord::Base
   	self.email = self.email.downcase
   end
 
-  def is_admin?
-  	return self.admin
-  end
 end

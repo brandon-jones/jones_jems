@@ -6,11 +6,11 @@
         - @faq.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  .field.form-group
     = f.label :question
-    = f.text_field :question
-  .field
+    = f.text_field :question, class: 'form-control'
+  .field.form-group
     = f.label :answer
-    = f.text_area :answer
+    = f.text_area :answer, class: 'form-control faq-edit-answer'
   .actions
     = f.submit 'Save'
