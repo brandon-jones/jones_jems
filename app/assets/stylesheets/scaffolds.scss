@@ -94,7 +94,6 @@ div {
   position: relative;
 }
 
-
 .radio-button { 
   padding-top: 0 !important;
 }
@@ -179,6 +178,10 @@ footer {
   padding: 1em 1em 1em 1em;
   line-height: 2em;
   margin-bottom: 2em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
 }
 
 .faq-question {
