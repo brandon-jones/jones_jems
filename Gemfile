@@ -57,8 +57,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda'
-  gem 'shoulda-matchers'
   gem 'rspec-rails', '~> 3.0'
 	gem 'guard-rspec'
   gem 'spring-commands-rspec'
