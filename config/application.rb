@@ -25,6 +25,7 @@ module JonesJems
       g.test_framework :rspec
       g.template_engine :haml
     end
+    
     config.serve_static_assets = true
 
     # Don't care if the mailer can't send.
