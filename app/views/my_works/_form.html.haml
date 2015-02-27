@@ -1,0 +1,27 @@
+= form_for @my_work, :html => { :class => 'form-horizontal', multipart: true } do |f|
+  - if @my_work.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@my_work.errors.count, "error")} prohibited this my_work from being saved:"
+      %ul
+        - @my_work.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :title, class: 'control-label'
+    .controls
+      = f.text_field :title, :class => 'form-control'
+  .form-group
+    = f.label :tags, class: 'control-label'
+    .controls
+      = f.text_field :tags, :class => 'form-control'
+  .form-group
+    = f.label :description, class: 'control-label'
+    .controls
+      = f.text_area :description, :class => 'form-control'
+  .form-group
+    = f.label :pictures, :class => 'control-label'
+    .controls
+      / The magic is coming ...look at my eyes....shazammmm
+      = file_field_tag "images[]", type: :file, multiple: true
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
