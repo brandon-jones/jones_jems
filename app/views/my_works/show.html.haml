@@ -20,7 +20,7 @@
       - @pictures.each do |pic|
         %li.span3{:id => "picture_#{pic.id}"}
           .thumbnail
-            = image_tag pic.image.url(:small)
+            = image_tag pic.image.url(:large)
             .caption
               %p{:style => "text-align: center;"}
                 = link_to "Edit picture", picture_path(pic)
