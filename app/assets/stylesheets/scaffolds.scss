@@ -245,3 +245,19 @@ span.faq-goto {
   padding-bottom: 51px; 
   display: inline-block;
 }
+
+.dropzone {
+min-height: 150px;
+border: 2px solid rgba(0, 0, 0, 0.3);
+background: white;
+padding: 20px 20px;
+}
+
+.dropzone.dz-clickable {
+cursor: pointer;
+}
+
+.dropzone .dz-message {
+  text-align: center;
+  margin: 2em 0;
+}

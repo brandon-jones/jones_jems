@@ -5,6 +5,7 @@ class CreatePictures < ActiveRecord::Migration
       t.string :description
       t.integer :my_work_id
       t.attachment :image
+      t.boolean :cropped, default: false
 
       t.timestamps null: false
     end

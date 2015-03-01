@@ -5,4 +5,8 @@ class Picture < ActiveRecord::Base
   	:styles => {:thumb => '100x100', :medium => '300x300', :large => '600x600'}
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   crop_attached_file :image
+
+  def url
+  	self.image.url
+  end
 end

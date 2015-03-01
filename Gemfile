@@ -33,6 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem "paperclip", "~> 4.2"
 gem 'papercrop', '~> 0.2.0'
 
+gem 'dropzonejs-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -24,12 +24,17 @@ class PicturesController < ApplicationController
   # POST /pictures
   # POST /pictures.json
   def create
+    unless params.keys.include?('picture')
+      params['picture'] = {}
+      params['picture']['image'] = params['file']
+      params.except!('file')
+    end
     @picture = Picture.new(picture_params)
-
+    binding.pry
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render :show, status: :created, location: @picture }
+        format.json { render json: @picture.to_json(:methods => @picture.image.url)}
       else
         format.html { render :new }
         format.json { render json: @picture.errors, status: :unprocessable_entity }
