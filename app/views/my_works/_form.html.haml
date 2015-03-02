@@ -22,3 +22,31 @@
 
 %form.dropzone#myAwesomeDropzone{:action => "/pictures"}
 %input{:type => "hidden", :value => "#{form_authenticity_token}", :id =>'session_key'}
+%input{:type => "hidden", :value => "#{@my_work.id}", :id =>'my_work_id'}
+
+%div.tabpanel{:role => "tabpanel"}
+  / Nav tabs
+  %ul.nav.nav-tabs#ul-tab{:role => "tablist"}
+    %li.active{:role => "presentation"}
+      %a{"aria-controls" => "pictures", "data-toggle" => "tab", :href => "#pictures", :role => "tab", "aria-expanded" => "true"} 
+        Pictures
+    - @my_work.pictures.each do |picture|
+      %li{:role => "presentation"}
+        %a.tab-load{"aria-controls" => "#{picture.image_file_name_no_ext}_#{picture.id}", "data-toggle" => "tab", :href => "##{picture.image_file_name_no_ext}_#{picture.id}", :role => "tab", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }} 
+          =picture.image_file_name_no_ext
+  / Tab panes
+  .tab-content#tab-content
+    .tab-pane.active{:role => "tabpanel", id: "pictures"}
+      :javascript
+          $(document).ready(function() {
+            $.ajax({
+              type: "GET",
+              url: "/pictures",
+              success: function(data, textStatus, jqXHR) {
+                return $('#pictures').html(data);
+              }
+            });
+          });
+      = render partial: 'pictures/index', locals: { pictures: @pictures}
+    - @my_work.pictures.each do |picture| 
+      .tab-pane{:role => "tabpanel", id: "#{picture.image_file_name_no_ext}_#{picture.id}"}

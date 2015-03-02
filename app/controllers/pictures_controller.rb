@@ -5,11 +5,17 @@ class PicturesController < ApplicationController
   # GET /pictures.json
   def index
     @pictures = Picture.all
+    render partial: 'index', locals: { pictures: @pictures }
   end
 
   # GET /pictures/1
   # GET /pictures/1.json
   def show
+    if @picture.cropped
+      render partial: 'show', locals: { picture: @picture }
+    else
+      render partial: 'form', locals: { picture: @picture }
+    end
   end
 
   # GET /pictures/new
@@ -30,11 +36,11 @@ class PicturesController < ApplicationController
       params.except!('file')
     end
     @picture = Picture.new(picture_params)
-    binding.pry
+
     respond_to do |format|
       if @picture.save
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
-        format.json { render json: @picture.to_json(:methods => @picture.image.url)}
+        format.json { render json: @picture.to_json(:methods => :thumbnail)}
       else
         format.html { render :new }
         format.json { render json: @picture.errors, status: :unprocessable_entity }

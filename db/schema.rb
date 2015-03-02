@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20150227053125) do
     t.string   "tags"
     t.text     "description"
     t.integer  "cover"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "published",   default: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   create_table "pictures", force: :cascade do |t|
@@ -42,8 +43,9 @@ ActiveRecord::Schema.define(version: 20150227053125) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.boolean  "cropped",            default: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -25,7 +25,7 @@
       - pic_id = 'top-image'
     .row{id: id}
       - unless @header_image && @header_image == "false"
-        = image_tag("top_image.png", :alt => "banner", :id => pic_id, class: 'img-responsive')
+        = image_tag("full_logo.png", :alt => "banner", :id => pic_id, class: 'img-responsive')
     .container-fluid
       .row
         - if params["action"] == "home"
@@ -36,6 +36,6 @@
         - else
           .col-sm-10.col-sm-offset-1.grey.round-corners
             .row
-              .col-sm-8.col-sm-offset-2
+              .col-sm-10.col-sm-offset-1
                 = yield
     %footer

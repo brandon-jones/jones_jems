@@ -4,7 +4,7 @@ class MyWorksController < ApplicationController
   # GET /my_works
   # GET /my_works.json
   def index
-    @my_works = MyWork.all
+    @my_works = MyWork.all.where.not(title: '')
   end
 
   # GET /my_works/1
@@ -15,7 +15,12 @@ class MyWorksController < ApplicationController
 
   # GET /my_works/new
   def new
-    @my_work = MyWork.new
+    @my_work = MyWork.where(published: false).first
+
+    @my_work = MyWork.create() unless @my_work
+
+    @pictures = Picture.where(my_work: @my_work.id)
+
   end
 
   # GET /my_works/1/edit

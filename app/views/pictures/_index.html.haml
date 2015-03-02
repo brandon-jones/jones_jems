@@ -1,0 +1,20 @@
+%table.table
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Description
+      %th Image
+      %th Cropped
+      
+  %tbody#pictures-tbody
+    - pictures.each do |picture|
+      %tr
+        %td
+          %img{:alt => "#{picture.title}", :src => "#{picture.image.url(:thumb)}"}/
+        %td= picture.title
+        %td= picture.description
+        %td= picture.image_file_name
+        %td= picture.cropped
+
+%br

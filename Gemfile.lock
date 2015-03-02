@@ -293,7 +293,7 @@ DEPENDENCIES
   jquery-rails
   meta_request
   paperclip (~> 4.2)
-  papercrop (~> 0.2.0)
+  papercrop
   pg
   pry (~> 0.10.0)
   pry-rails
