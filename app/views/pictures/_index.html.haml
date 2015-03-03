@@ -5,7 +5,7 @@
       %th Title
       %th Description
       %th Image
-      %th Main
+      %th Cover
       
   %tbody#pictures-tbody
     - pictures.each do |picture|
@@ -17,7 +17,7 @@
         %td.file_name= picture.image_file_name
         %td.main_image
           - if picture.cropped
-            Yays
+            %input.update-main-image{:name => "main_image", :type => "radio", :value => "true", :checked => "#{picture.cover? ? true : false }", data: { id: picture.id }}
           - else
             CROP
 %br

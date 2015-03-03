@@ -38,10 +38,16 @@ cropImage = function(e) {
     	if (params.picture.description.length > 0) {
     		$('#'+file_name+"_"+id+"-tr").children('.description').text(params.picture.description);
     	}
+    	//  update image on index
     	var img = $('#'+file_name+"_"+id+"-tr").children('.mini-pic').children('img')[0];
     	img.alt = data.title;
     	img.src = data.thumbnail;
+    	//  remove red border from tab
     	$('#'+file_name+"_"+id+"-tab").children('a').removeClass('not-cropped');
+    	//  add radio button to index
+    	$('#'+file_name+"_"+id+"-tr").children('.main_image')[0].textContent = "";
+    	$('#'+file_name+"_"+id+"-tr").children('.main_image')[0].appendChild(createInput(data));
+    	//  rebind button
     	$('.edit-image').unbind("click");
     	$('.edit-image').on("click", editImage);
     }
@@ -64,6 +70,16 @@ editImage = function(e) {
       $('.crop-image').on("click", cropImage);
     }
   });
+};
+
+createInput = function(image) {
+	var input = document.createElement('input');
+  input.setAttribute('name','main_image');
+  input.setAttribute('type','radio');
+  input.setAttribute('value','true');
+  input.setAttribute('class','update-main-image');
+  input.setAttribute('data-id',image.id);
+  return input;
 };
 
 showImage = function(image) {

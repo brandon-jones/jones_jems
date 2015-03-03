@@ -46,7 +46,8 @@
               type: "GET",
               url: "/pictures",
               success: function(data, textStatus, jqXHR) {
-                return $('#pictures').html(data);
+                $('#pictures').html(data);
+                return $('.update-main-image').on("change", updateMainImage);
               }
             });
           });

@@ -18,6 +18,10 @@ class Picture < ActiveRecord::Base
     return self.image.url(:medium)
   end
 
+  def cover?
+    return self.my_work.cover == self.id
+  end
+
   def image_file_name_no_ext
   	return File.basename(self.image_file_name,File.extname(self.image_file_name))
   end

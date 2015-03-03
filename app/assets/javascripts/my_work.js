@@ -1,8 +1,27 @@
 $(document).ready(function() {
   $('.tab-load').on("click", loadTabContents);
   $('.edit-image').on("click", editImage);
-  
 });
+
+updateMainImage = function(e) {
+  console.log(this);
+  var id = this.dataset.id;
+  return $.ajax({
+    type: 'PATCH',
+    url: '/my_works/'+id,
+    dataType: 'json',
+    beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+    data: {
+      my_work: {
+        id: id,
+        cover: id
+      }
+    },
+    success: function(data, textStatus) {
+      console.log('testing');
+    }
+  });
+};
 
 loadTabContents = function(e) {
   e.stopPropagation();

@@ -58,7 +58,7 @@ class MyWorksController < ApplicationController
         format.json { render :show, status: :ok, location: @my_work }
       else
         format.html { render :edit }
-        format.json { render json: @my_work.errors, status: :unprocessable_entity }
+        format.json { head :ok }
       end
     end
   end
