@@ -1,0 +1,56 @@
+= form_for @my_work, :html => { :class => 'form-horizontal', multipart: true } do |f|
+  - if @my_work.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@my_work.errors.count, "error")} prohibited this my_work from being saved:"
+      %ul
+        - @my_work.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    = f.label :title, class: 'control-label'
+    .controls
+      = f.text_field :title, :class => 'form-control'
+  .form-group
+    = f.label :tags, class: 'control-label'
+    .controls
+      = f.text_field :tags, :class => 'form-control'
+  .form-group
+    = f.label :description, class: 'control-label'
+    .controls
+      = f.text_area :description, :class => 'form-control'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+
+%form.dropzone#myAwesomeDropzone{:action => "/pictures"}
+%input{:type => "hidden", :value => "#{form_authenticity_token}", :id =>'session_key'}
+%input{:type => "hidden", :value => "#{@my_work.id}", :id =>'my_work_id'}
+
+%div.tabpanel{:role => "tabpanel"}
+  / Nav tabs
+  %ul.nav.nav-tabs#ul-tab
+    %li.active
+      %a.tab-load.ajaxed{:href => "#pictures"} 
+        Pictures
+    - @my_work.pictures.each do |picture|
+      %li{id: "#{picture.image_file_name_no_ext}_#{picture.id}-tab"}
+        %a.tab-load{:href => "#", class: "#{picture.cropped ? '' : 'not-cropped'}", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }} 
+          - if picture.title.present?
+            = picture.title
+          - else
+            =picture.image_file_name_no_ext
+  / Tab panes
+  .tab-content#tab-content
+    .tab-pane.active{id: "pictures"}
+      :javascript
+          $(document).ready(function() {
+            $.ajax({
+              type: "GET",
+              url: "/pictures",
+              success: function(data, textStatus, jqXHR) {
+                $('#pictures').html(data);
+                return $('.update-main-image').on("change", updateMainImage);
+              }
+            });
+          });
+      = render partial: 'pictures/index', locals: { pictures: @pictures}
+    - @my_work.pictures.each do |picture| 
+      .tab-pane{id: "#{picture.image_file_name_no_ext}_#{picture.id}-content"}

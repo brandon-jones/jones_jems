@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @my_work.title
+%p
+  %b Tags:
+  = @my_work.tags
+%p
+  %b Description:
+  = @my_work.description
+%p
+  %b Cover:
+  = @my_work.cover
+
+%h2 Pictures
+.row
+  %ul.thumbnails.files
+    - unless @pictures.empty?
+      - @pictures.each do |pic|
+        %li.span3{:id => "picture_#{pic.id}"}
+          .thumbnail
+            = image_tag pic.image.url(:large)
+            .caption
+              %p{:style => "text-align: center;"}
+                = link_to "Edit picture", picture_path(pic)
+                = link_to "Delete picture", pic,            |
+                  :data => { :confirm => "Are you sure?" }, |
+                  :method => :delete                        |
+
+= link_to 'Edit', edit_my_work_path(@my_work)
+\|
+= link_to 'Back', my_works_path

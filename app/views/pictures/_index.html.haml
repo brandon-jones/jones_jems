@@ -1,0 +1,23 @@
+%table.table
+  %thead
+    %tr
+      %th
+      %th Title
+      %th Description
+      %th Image
+      %th Cover
+      
+  %tbody#pictures-tbody
+    - pictures.each do |picture|
+      %tr{id: "#{picture.image_file_name_no_ext}_#{picture.id}-tr"}
+        %td.mini-pic
+          %img{:alt => "#{picture.title}", :src => "#{picture.image.url(:thumb)}"}/
+        %td.title= picture.title
+        %td.description= picture.description
+        %td.file_name= picture.image_file_name
+        %td.main_image
+          - if picture.cropped
+            %input.update-main-image{:name => "main_image", :type => "radio", :value => "true", :checked => "#{picture.cover? ? true : false }", data: { id: picture.id }}
+          - else
+            CROP
+%br

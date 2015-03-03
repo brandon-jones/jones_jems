@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :pictures
+
+  resources :my_works
+
   resources :faqs
 
   resources :users

@@ -104,6 +104,8 @@ img#title-image {
   margin-right: auto;
   position: relative;
   vertical-align: middle;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 img#top-image {
@@ -244,4 +246,20 @@ span.faq-goto {
   margin-top: -51px;        /* Size of fixed header */
   padding-bottom: 51px; 
   display: inline-block;
+}
+
+.dropzone {
+min-height: 150px;
+border: 2px solid rgba(0, 0, 0, 0.3);
+background: white;
+padding: 20px 20px;
+}
+
+.dropzone.dz-clickable {
+cursor: pointer;
+}
+
+.dropzone .dz-message {
+  text-align: center;
+  margin: 2em 0;
 }
