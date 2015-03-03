@@ -1,35 +1,51 @@
 $(document).ready(function() {
   $('.tab-load').on("click", loadTabContents);
+  $('.edit-image').on("click", editImage);
+  
 });
 
 loadTabContents = function(e) {
-  var currentTab = $(this).attr('href');
-  var vis = $(currentTab).is(':visible');
+  e.stopPropagation();
+  e.preventDefault();
+  var currentTab = $(this);
   var id = this.dataset.id;
   var file_name = this.dataset.fileName;
-  $.ajax({
-    type: "GET",
-    url: "/pictures/"+id,
-    success: function(data, textStatus, jqXHR) {
-      $('#'+file_name+"_"+id).html(data);
-      if(vis) {
-        
-      } else {
-        $('#ul-tab').children('.active').removeClass('active');
-        $('#tab-content').children('.active').removeClass('active')
-        $(currentTab).addClass('active');
+  if (currentTab[0].classList.contains('ajaxed')) {
+    return activateTab(file_name+"_"+id);
+  } else {
+    $.ajax({
+      type: "GET",
+      url: "/pictures/"+id,
+      success: function(data, textStatus, jqXHR) {
+        $('#'+file_name+"_"+id+"-content").html((data));
+        currentTab.addClass('ajaxed');
+        activateTab(file_name+"_"+id);
+        $('.crop-image').unbind("click");
+        $('.crop-image').on("click", cropImage);
+        $('.edit-image').unbind("click");
+        $('.edit-image').on("click", editImage);
+        return init_papercrop();
       }
-      return init_papercrop();
-    }
-  });
+    });
+  }
+};
+
+activateTab = function(tab) {
+  $('#ul-tab').children('.active').removeClass('active');
+  $('#tab-content').children('.active').removeClass('active')
+  if (tab == 'undefined_undefined') {
+    $('#pictures').addClass('active');
+  } else {
+    $('#'+tab+"-content").addClass('active');
+    $('#'+tab+"-tab").addClass('active');  
+  }
+  return;
 };
 
 createTabContent = function(info) {
   var div = document.createElement('div');
   div.setAttribute('class','tab-pane');
-  div.setAttribute('class','tab-pane');
-  div.setAttribute('id',info.image_file_name.replace(/\.[^/.]+$/, "")+"_"+info.id);
-  div.setAttribute('role','tabpanel');
+  div.setAttribute('id',info.image_file_name.replace(/\.[^/.]+$/, "")+"_"+info.id+"-content");
   return div;
 };
 
@@ -38,17 +54,13 @@ createLi = function(info) {
   var fileName = info.image_file_name.replace(/\.[^/.]+$/, "")+"_"+info.id;
 
   var entry = document.createElement('li');
-  entry.setAttribute('role', 'presentation');
+  entry.id = info.image_file_name.replace(/\.[^/.]+$/, "")+"_"+info.id+"-tab";
 
   var anchor = document.createElement('a');
-  anchor.href = '#'+info.image_file_name.replace(/\.[^/.]+$/, "")+"_"+info.id;
-  anchor.setAttribute('aria-controls',info.image_file_name.replace(/\.[^/.]+$/, "")+"_"+info.id);
-  anchor.setAttribute('data-toggle','tab');
-  anchor.setAttribute('class','tab-load');
+  anchor.href = '#';
+  anchor.setAttribute('class','tab-load not-cropped');
   anchor.setAttribute('data-file-name',info.image_file_name.replace(/\.[^/.]+$/, ""));
   anchor.setAttribute('data-id',info.id);
-  anchor.setAttribute('role','tab');
-  anchor.setAttribute('aria-expanded','false');
 
   anchor.text = info.image_file_name.replace(/\.[^/.]+$/, "");
   
@@ -60,26 +72,31 @@ createLi = function(info) {
 
 createTr = function(info) {
   var tr = document.createElement('tr');
-  
+  tr.id = info.image_file_name.replace(/\.[^/.]+$/, "")+"_"+info.id+"-tr";
   var td = document.createElement('td');
+  td.setAttribute('class','mini-pic');
   var img = document.createElement('img');
   img.src = info.thumbnail;
   td.appendChild(img);
   tr.appendChild(td);
 
   td = document.createElement('td');
+  td.setAttribute('class','title');
   td.textContent = info.title
   tr.appendChild(td);
 
   td = document.createElement('td');
+  td.setAttribute('class','description');
   td.textContent = info.description;
   tr.appendChild(td);
 
   td = document.createElement('td');
+  td.setAttribute('class','file_name');
   td.textContent = info.image_file_name;
   tr.appendChild(td);
 
   td = document.createElement('td');
+  td.setAttribute('class','main_image');
   td.textContent = info.cropped;
   tr.appendChild(td);
 

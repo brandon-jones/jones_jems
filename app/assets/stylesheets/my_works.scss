@@ -5,3 +5,28 @@
 .tabpanel {
 	overflow: hidden;
 }
+
+#pictures-tbody {
+	& td {
+		&.mini-pic {
+			width: 100px;
+		}
+		&.description {
+			width: 40%;
+		}
+		&.file_name {
+			width: 225px;
+		}
+		&.main_image {
+			width: 50px;
+		}
+	}
+}
+
+.tab-load {
+	background-color: #F3E5FF;
+}
+
+.not-cropped {
+	border: 1px solid red !important;
+}

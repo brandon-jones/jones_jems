@@ -11,10 +11,15 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
-    if @picture.cropped
-      render partial: 'show', locals: { picture: @picture }
-    else
-      render partial: 'form', locals: { picture: @picture }
+    respond_to do |format|
+      format.html do
+        if @picture.cropped
+          render partial: 'show', locals: { picture: @picture } and return
+        else
+          render partial: 'form', locals: { picture: @picture } and return
+        end
+      end
+      format.json { render json: @picture.to_json(:methods => [:thumbnail,:medium, :large])}
     end
   end
 
@@ -25,16 +30,16 @@ class PicturesController < ApplicationController
 
   # GET /pictures/1/edit
   def edit
+    respond_to do |format|
+      format.html {render partial: 'form', locals: { picture: @picture } and return }
+      format.json { render json: @picture.to_json(:methods => :large) }
+    end
+      
   end
 
   # POST /pictures
   # POST /pictures.json
   def create
-    unless params.keys.include?('picture')
-      params['picture'] = {}
-      params['picture']['image'] = params['file']
-      params.except!('file')
-    end
     @picture = Picture.new(picture_params)
 
     respond_to do |format|
@@ -53,8 +58,17 @@ class PicturesController < ApplicationController
   def update
     respond_to do |format|
       if @picture.update(picture_params)
-        format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @picture }
+
+        @picture.update_attribute(:cropped, true) if params['picture']['image_aspect'].present?
+        format.html do 
+          if @picture.cropped
+            render partial: 'show', locals: { picture: @picture } and return
+          else
+            render partial: 'form', locals: { picture: @picture } and return
+          end
+        end
+
+        format.json { render json: @picture.to_json(:methods => [:thumbnail,:medium, :large])}
       else
         format.html { render :edit }
         format.json { render json: @picture.errors, status: :unprocessable_entity }

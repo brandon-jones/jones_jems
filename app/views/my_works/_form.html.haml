@@ -26,17 +26,20 @@
 
 %div.tabpanel{:role => "tabpanel"}
   / Nav tabs
-  %ul.nav.nav-tabs#ul-tab{:role => "tablist"}
-    %li.active{:role => "presentation"}
-      %a{"aria-controls" => "pictures", "data-toggle" => "tab", :href => "#pictures", :role => "tab", "aria-expanded" => "true"} 
+  %ul.nav.nav-tabs#ul-tab
+    %li.active
+      %a.tab-load.ajaxed{:href => "#pictures"} 
         Pictures
     - @my_work.pictures.each do |picture|
-      %li{:role => "presentation"}
-        %a.tab-load{"aria-controls" => "#{picture.image_file_name_no_ext}_#{picture.id}", "data-toggle" => "tab", :href => "##{picture.image_file_name_no_ext}_#{picture.id}", :role => "tab", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }} 
-          =picture.image_file_name_no_ext
+      %li{id: "#{picture.image_file_name_no_ext}_#{picture.id}-tab"}
+        %a.tab-load{:href => "#", class: "#{picture.cropped ? '' : 'not-cropped'}", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }} 
+          - if picture.title.present?
+            = picture.title
+          - else
+            =picture.image_file_name_no_ext
   / Tab panes
   .tab-content#tab-content
-    .tab-pane.active{:role => "tabpanel", id: "pictures"}
+    .tab-pane.active{id: "pictures"}
       :javascript
           $(document).ready(function() {
             $.ajax({
@@ -49,4 +52,4 @@
           });
       = render partial: 'pictures/index', locals: { pictures: @pictures}
     - @my_work.pictures.each do |picture| 
-      .tab-pane{:role => "tabpanel", id: "#{picture.image_file_name_no_ext}_#{picture.id}"}
+      .tab-pane{id: "#{picture.image_file_name_no_ext}_#{picture.id}-content"}

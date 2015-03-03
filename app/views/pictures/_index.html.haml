@@ -5,16 +5,19 @@
       %th Title
       %th Description
       %th Image
-      %th Cropped
+      %th Main
       
   %tbody#pictures-tbody
     - pictures.each do |picture|
-      %tr
-        %td
+      %tr{id: "#{picture.image_file_name_no_ext}_#{picture.id}-tr"}
+        %td.mini-pic
           %img{:alt => "#{picture.title}", :src => "#{picture.image.url(:thumb)}"}/
-        %td= picture.title
-        %td= picture.description
-        %td= picture.image_file_name
-        %td= picture.cropped
-
+        %td.title= picture.title
+        %td.description= picture.description
+        %td.file_name= picture.image_file_name
+        %td.main_image
+          - if picture.cropped
+            Yays
+          - else
+            CROP
 %br

@@ -1,27 +1,3 @@
-module Paperclip
-  class Rotator < Thumbnail
-    def initialize(file, options = {}, attachment = nil)
-      options[:auto_orient] = false
-      super
-    end
-
-    def transformation_command
-      if rotate_command
-        "#{rotate_command} #{super.join(' ')}"
-      else
-        super
-      end
-    end
-
-    def rotate_command
-      target = @attachment.instance
-      if target.rotation.present?
-        " -rotate #{target.rotation}"
-      end
-    end
-  end
-end
-
 class Picture < ActiveRecord::Base
 	belongs_to :my_work
 
@@ -32,6 +8,14 @@ class Picture < ActiveRecord::Base
 
   def thumbnail
   	return self.image.url(:thumb)
+  end
+
+  def large
+    return self.image.url(:large)
+  end
+
+  def medium
+    return self.image.url(:medium)
   end
 
   def image_file_name_no_ext
