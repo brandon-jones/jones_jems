@@ -1,0 +1,6 @@
+.row
+  - @my_works.each do |my_work|
+    .col-sm-4
+      .my-thumbnail
+        %a{ href: "/my_works/#{my_work.id}"}
+          = image_tag my_work.cover.image.url(:medium)

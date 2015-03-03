@@ -1,6 +1,10 @@
 class Picture < ActiveRecord::Base
 	belongs_to :my_work
 
+  scope :cropped, -> { where(cropped: true) } 
+
+
+
   has_attached_file :image, 
   	:styles => {:thumb => '100x100', :medium => '300x300', :large => '600x600'}
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
@@ -19,7 +23,7 @@ class Picture < ActiveRecord::Base
   end
 
   def cover?
-    return self.my_work.cover == self.id
+    return self.my_work.picture_id == self.id
   end
 
   def image_file_name_no_ext

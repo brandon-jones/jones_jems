@@ -4,7 +4,8 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all
+    render nothing: true and return unless params["my_work_id"]
+    @pictures = Picture.where(my_work_id: params["my_work_id"])
     render partial: 'index', locals: { pictures: @pictures }
   end
 

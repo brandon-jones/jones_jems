@@ -7,10 +7,16 @@ class MyWorksController < ApplicationController
     @my_works = MyWork.all.where.not(title: '')
   end
 
+  def show_off
+    @my_works = MyWork.all.where.not(title: '')
+  end
+
   # GET /my_works/1
   # GET /my_works/1.json
   def show
-    @pictures = @my_work.pictures
+    pic = @my_work.pictures
+    @pictures = pic.cropped
+    @needs_attention = pic.count > @pictures.count ? true : false
   end
 
   # GET /my_works/new
@@ -25,13 +31,14 @@ class MyWorksController < ApplicationController
 
   # GET /my_works/1/edit
   def edit
+    @pictures = Picture.where(my_work: @my_work.id)
   end
 
   # POST /my_works
   # POST /my_works.json
   def create
     @my_work = MyWork.new(my_work_params)
-
+    @my_work.published = true
     respond_to do |format|
       if @my_work.save
         if params[:images]
@@ -52,6 +59,7 @@ class MyWorksController < ApplicationController
   # PATCH/PUT /my_works/1
   # PATCH/PUT /my_works/1.json
   def update
+    @my_work.update_attribute(:published, true)
     respond_to do |format|
       if @my_work.update(my_work_params)
         format.html { redirect_to @my_work, notice: 'My work was successfully updated.' }
@@ -81,6 +89,6 @@ class MyWorksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def my_work_params
-      params.require(:my_work).permit(:title, :tags, :description, :cover, :pictures)
+      params.require(:my_work).permit(:title, :tags, :description, :picture_id, :pictures)
     end
 end

@@ -1,33 +1,24 @@
-%p#notice= notice
-
-%p
-  %b Title:
-  = @my_work.title
-%p
-  %b Tags:
-  = @my_work.tags
-%p
-  %b Description:
-  = @my_work.description
-%p
-  %b Cover:
-  = @my_work.cover
-
-%h2 Pictures
 .row
-  %ul.thumbnails.files
-    - unless @pictures.empty?
+  .col-sm-1#my-work-pic-list
+    .row
       - @pictures.each do |pic|
-        %li.span3{:id => "picture_#{pic.id}"}
-          .thumbnail
+        .col-sm-12
+          .thumbnail{class: "#{pic.cover? ? 'cover-pic' : ''}"}
             = image_tag pic.image.url(:large)
-            .caption
-              %p{:style => "text-align: center;"}
-                = link_to "Edit picture", picture_path(pic)
-                = link_to "Delete picture", pic,            |
-                  :data => { :confirm => "Are you sure?" }, |
-                  :method => :delete                        |
-
-= link_to 'Edit', edit_my_work_path(@my_work)
-\|
-= link_to 'Back', my_works_path
+  .col-sm-7
+    .col-sm-12
+      .thumbnail
+        = image_tag @my_work.cover.image.url(:large)
+        .caption
+          %p
+            = @my_work.cover.description
+  .col-sm-4
+    %p
+      %b Title:
+      = @my_work.title
+    %p
+      %b Tags:
+      = @my_work.tags
+    %p
+      %b Description:
+      = @my_work.description

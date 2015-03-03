@@ -4,8 +4,8 @@ $(document).ready(function() {
 });
 
 updateMainImage = function(e) {
-  console.log(this);
   var id = this.dataset.id;
+  var cover = this.dataset.cover;
   return $.ajax({
     type: 'PATCH',
     url: '/my_works/'+id,
@@ -14,11 +14,11 @@ updateMainImage = function(e) {
     data: {
       my_work: {
         id: id,
-        cover: id
+        picture_id: cover
       }
     },
     success: function(data, textStatus) {
-      console.log('testing');
+      return;
     }
   });
 };

@@ -24,7 +24,7 @@
 %input{:type => "hidden", :value => "#{form_authenticity_token}", :id =>'session_key'}
 %input{:type => "hidden", :value => "#{@my_work.id}", :id =>'my_work_id'}
 
-%div.tabpanel{:role => "tabpanel"}
+%div.tabpanel
   / Nav tabs
   %ul.nav.nav-tabs#ul-tab
     %li.active
@@ -44,7 +44,7 @@
           $(document).ready(function() {
             $.ajax({
               type: "GET",
-              url: "/pictures",
+              url: "/pictures?my_work_id="+"#{@my_work.id}",
               success: function(data, textStatus, jqXHR) {
                 $('#pictures').html(data);
                 return $('.update-main-image').on("change", updateMainImage);

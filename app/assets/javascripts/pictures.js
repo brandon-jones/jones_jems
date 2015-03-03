@@ -52,7 +52,6 @@ cropImage = function(e) {
     	$('.edit-image').on("click", editImage);
     }
   });
-  console.log(params);
 };
 
 editImage = function(e) {
@@ -78,7 +77,8 @@ createInput = function(image) {
   input.setAttribute('type','radio');
   input.setAttribute('value','true');
   input.setAttribute('class','update-main-image');
-  input.setAttribute('data-id',image.id);
+  input.setAttribute('data-id',image.my_work_id);
+  input.setAttribute('data-cover',image.id);
   return input;
 };
 

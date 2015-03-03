@@ -6,6 +6,7 @@
       %th Description
       %th Image
       %th Cover
+      %th Delete
       
   %tbody#pictures-tbody
     - pictures.each do |picture|
@@ -17,7 +18,9 @@
         %td.file_name= picture.image_file_name
         %td.main_image
           - if picture.cropped
-            %input.update-main-image{:name => "main_image", :type => "radio", :value => "true", :checked => "#{picture.cover? ? true : false }", data: { id: picture.id }}
+            %input.update-main-image{:name => "main_image", :type => "radio", :value => "true", :checked => "#{picture.cover? ? true : false }", data: { id: picture.my_work_id, cover: picture.id }}
           - else
             CROP
+        %td
+          = link_to "Delete picture", picture, :data => { :confirm => "Are you sure?" }, :method => :delete          
 %br

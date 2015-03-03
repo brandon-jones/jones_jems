@@ -4,7 +4,7 @@ class CreateMyWorks < ActiveRecord::Migration
       t.string :title
       t.string :tags
       t.text :description
-      t.integer :cover
+      t.integer :picture_id
       t.boolean :published, default: false
 
       t.timestamps null: false

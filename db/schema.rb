@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20150227053125) do
     t.string   "title"
     t.string   "tags"
     t.text     "description"
-    t.integer  "cover"
+    t.integer  "picture_id"
     t.boolean  "published",   default: false
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
