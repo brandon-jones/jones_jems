@@ -1,24 +1,34 @@
 .row
-  .col-sm-1#my-work-pic-list
-    .row
-      - @pictures.each do |pic|
-        .col-sm-12
-          .thumbnail{class: "#{pic.cover? ? 'cover-pic' : ''}"}
-            = image_tag pic.image.url(:large)
-  .col-sm-7
-    .col-sm-12
-      .thumbnail
-        = image_tag @my_work.cover.image.url(:large)
-        .caption
-          %p
-            = @my_work.cover.description
+  .col-sm-8
+    %div.tabbable.tabs-left{:role => "tabpanel"}
+      / Nav tabs
+      .col-sm-2#my-work-show-left-tabs
+        %ul.nav{:role => "tablist"}
+          - active = true
+          %li{:role => "presentation",class: "#{active ? 'active' : ''}"}
+            - @pictures.each do |pic|
+              .thumbnail.thumb-force-width
+                %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "##{pic.name_id}", :role => "tab"}
+                  %img.picture-ajax{data: {id: "#{pic.id}", size: 'thumbnail'}}
+                  - active = false
+        
+      / Tab panes
+      .col-sm-10
+        .tab-content
+          - active = true
+          - @pictures.each do |pic|
+            .tab-pane{class: "#{active ? 'active' : ''}", :role => "tabpanel", id: "#{pic.name_id}"}
+              .thumbnail.img-force-width
+                %img.picture-ajax{data: {id: "#{pic.id}", size: 'large'}}
+                - active = false
   .col-sm-4
-    %p
-      %b Title:
-      = @my_work.title
-    %p
-      %b Tags:
-      = @my_work.tags
-    %p
-      %b Description:
-      = @my_work.description
+    #my-work-info.round-corners
+      %h3.text-center
+        = @my_work.title
+      %p.text-center
+        - @my_work.tags.split(' ').each do |tag|
+          %span.badge= tag
+      - if @my_work.description.length > 0
+        %p
+          %b Description:
+          = @my_work.description

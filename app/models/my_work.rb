@@ -15,4 +15,5 @@ class MyWork < ActiveRecord::Base
 		end
 		return Picture.find_by_id(self.picture_id)
 	end
+
 end

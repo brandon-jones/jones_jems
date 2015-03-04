@@ -31,7 +31,7 @@
       %a.tab-load.ajaxed{:href => "#pictures"} 
         Pictures
     - @my_work.pictures.each do |picture|
-      %li{id: "#{picture.image_file_name_no_ext}_#{picture.id}-tab"}
+      %li{id: "#{picture.name_id}-tab"}
         %a.tab-load{:href => "#", class: "#{picture.cropped ? '' : 'not-cropped'}", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }} 
           - if picture.title.present?
             = picture.title
@@ -53,4 +53,4 @@
           });
       = render partial: 'pictures/index', locals: { pictures: @pictures}
     - @my_work.pictures.each do |picture| 
-      .tab-pane{id: "#{picture.image_file_name_no_ext}_#{picture.id}-content"}
+      .tab-pane{id: "#{picture.name_id}-content"}

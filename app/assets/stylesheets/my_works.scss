@@ -31,7 +31,21 @@
 	border: 1px solid red !important;
 }
 
-#my-work-pic-list {
-	padding-left: 0;
-	padding-right: 0;
+#my-work-show-left-tabs {
+
+}
+
+.thumb-force-width {
+	min-width: 55px !important;
+}
+
+.img-force-width {
+	min-width: 205px !important;
+}
+
+#my-work-info {
+	margin: 10px;
+	background-color: white !important;
+	min-height: 10em;
+	padding: 10px;
 }

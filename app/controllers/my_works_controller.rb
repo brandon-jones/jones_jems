@@ -1,5 +1,6 @@
 class MyWorksController < ApplicationController
   before_action :set_my_work, only: [:show, :edit, :update, :destroy]
+  before_action :authenticated_admin?, except: [:show_off, :show]
 
   # GET /my_works
   # GET /my_works.json
@@ -8,15 +9,15 @@ class MyWorksController < ApplicationController
   end
 
   def show_off
-    @my_works = MyWork.all.where.not(title: '')
+    @my_works = MyWork.all.where.not(title: '').order(:created_at)
   end
 
   # GET /my_works/1
   # GET /my_works/1.json
   def show
-    pic = @my_work.pictures
-    @pictures = pic.cropped
-    @needs_attention = pic.count > @pictures.count ? true : false
+    @pictures = []
+    @pictures << @my_work.cover
+    @pictures += @my_work.pictures.cropped.where.not(id: @my_work.cover.id)
   end
 
   # GET /my_works/new
@@ -60,6 +61,7 @@ class MyWorksController < ApplicationController
   # PATCH/PUT /my_works/1.json
   def update
     @my_work.update_attribute(:published, true)
+    params["my_work"]["tags"] = params["my_work"]["tags"].split(' ').uniq!.join(' ') if params["my_work"] && params["my_work"]["tags"] && params["my_work"]["tags"].present?
     respond_to do |format|
       if @my_work.update(my_work_params)
         format.html { redirect_to @my_work, notice: 'My work was successfully updated.' }

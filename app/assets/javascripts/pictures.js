@@ -54,6 +54,27 @@ cropImage = function(e) {
   });
 };
 
+loadImage = function(e) {
+  jQuery.each($('.picture-ajax'), function(index, value) {
+    var id = this.dataset.id;
+    var size = this.dataset.size;
+    var img = this;
+    if (!img.classList.contains('loaded')) {
+      return $.ajax({
+        type: 'GET',
+        url: "/pictures/"+id,
+        dataType: 'json',
+        beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+        success: function(data, textStatus) {
+          img.alt = data.title;
+          img.src = data[size];
+          img.classList.add('loaded');
+        }
+      });
+    }
+  });
+};
+
 editImage = function(e) {
 	e.stopPropagation();
   e.preventDefault();

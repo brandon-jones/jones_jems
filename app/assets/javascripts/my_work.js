@@ -1,6 +1,7 @@
 $(document).ready(function() {
   $('.tab-load').on("click", loadTabContents);
   $('.edit-image').on("click", editImage);
+  loadImage();
 });
 
 updateMainImage = function(e) {

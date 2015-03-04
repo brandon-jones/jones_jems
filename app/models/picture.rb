@@ -29,4 +29,8 @@ class Picture < ActiveRecord::Base
   def image_file_name_no_ext
   	return File.basename(self.image_file_name,File.extname(self.image_file_name))
   end
+
+  def name_id
+    return image_file_name_no_ext + "_" + self.id.to_s
+  end
 end

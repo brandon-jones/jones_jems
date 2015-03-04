@@ -10,7 +10,7 @@
       
   %tbody#pictures-tbody
     - pictures.each do |picture|
-      %tr{id: "#{picture.image_file_name_no_ext}_#{picture.id}-tr"}
+      %tr{id: "#{picture.name_id}-tr"}
         %td.mini-pic
           %img{:alt => "#{picture.title}", :src => "#{picture.image.url(:thumb)}"}/
         %td.title= picture.title
