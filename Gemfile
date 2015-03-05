@@ -26,8 +26,6 @@ gem 'haml-rails', '~> 0.8.2'
 
 gem 'braintree', '~> 2.38.0'
 
-gem 'faker', '~> 1.4.3'
-
 gem 'bcrypt', '~> 3.1.7'
 
 gem "paperclip", "~> 4.2"
@@ -35,6 +33,7 @@ gem 'papercrop'
 # gem  'mini_exiftool'
 
 gem 'dropzonejs-rails'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -46,6 +45,7 @@ gem 'dropzonejs-rails'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'faker', '~> 1.4.3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug'
 
@@ -63,13 +63,10 @@ group :development, :test do
 end
 
 group :test do
-  gem 'shoulda'
-  gem 'shoulda-matchers'
   gem 'rspec-rails', '~> 3.0'
-	gem 'guard-rspec'
   gem 'spring-commands-rspec'
-  gem 'guard-spork'
-  gem "spork-rails", "~> 4.0.0"
+  gem 'terminal-notifier-guard', '~> 1.6.1'
+  gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'factory_girl_rails'
   gem 'rb-fsevent' if `uname` =~ /Darwin/

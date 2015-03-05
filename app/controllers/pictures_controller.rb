@@ -46,6 +46,7 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
+        binding.pry
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
         format.json { render json: @picture.to_json(:methods => :thumbnail)}
       else

@@ -3,10 +3,10 @@ class Picture < ActiveRecord::Base
 
   scope :cropped, -> { where(cropped: true) } 
 
-
-
   has_attached_file :image, 
-  	:styles => {:thumb => '100x100', :medium => '300x300', :large => '600x600'}
+  	:styles => {:thumb => '100x100', :medium => '300x300', :large => '600x600'},
+    :url => ":rails_root/public/system/images/:id/:style/:basename.:extension",  
+    :path => ":rails_root/public/system/images/:id/:style/:basename.:extension" 
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   crop_attached_file :image
 
