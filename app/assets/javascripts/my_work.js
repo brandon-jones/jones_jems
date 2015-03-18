@@ -1,8 +1,30 @@
 $(document).ready(function() {
   $('.tab-load').on("click", loadTabContents);
   $('.edit-image').on("click", editImage);
+  $('.delete-image').on("click", deleteImage);
   loadImage();
 });
+
+deleteImage = function(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  var pic_id = this.dataset.id;
+  strconfirm = confirm("Are you sure you want to delete? This can not be undone!");
+  if (strconfirm == true) {
+    console.log('teseting');
+    return $.ajax({
+      type: 'DELETE',
+      url: '/pictures/'+pic_id,
+      dataType: 'json',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      success: function(data, textStatus) {
+        var base_name = '#'+data.image_file_name.replace(/\.[^/.]+$/, "")+'_'+data.id;
+        $(base_name+'-tr').hide();
+        $(base_name+'-tab').hide();
+      }
+    });
+  }
+}
 
 updateMainImage = function(e) {
   var id = this.dataset.id;
@@ -117,7 +139,11 @@ createTr = function(info) {
 
   td = document.createElement('td');
   td.setAttribute('class','main_image');
-  td.textContent = info.cropped;
+  if (info.cropped == false) {
+    td.textContent = 'CROP'
+  } else {
+    td.appendChild(createInput(info));
+  }
   tr.appendChild(td);
 
   return tr;
@@ -131,7 +157,8 @@ Dropzone.options.myAwesomeDropzone = {
   acceptedFiles: 'image/jpg,image/jpeg,image/png',
   sending: function(file, xhr, formData) {
   	formData.append("authenticity_token", $('#session_key').val());
-  	formData.append("picture[my_work_id]", $('#my_work_id').val());
+    formData.append("picture[gallery_id]", $('#gallery_id').val());
+    formData.append("picture[gallery_type]", $('#gallery_type').val());
   },
   success: function(file, response){
     this.removeFile(file);
