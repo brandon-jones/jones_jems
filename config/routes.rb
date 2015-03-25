@@ -7,8 +7,6 @@ Rails.application.routes.draw do
 
   resources :users
 
-  get 'show_off', to: 'my_works#show_off'
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

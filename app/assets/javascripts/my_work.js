@@ -146,6 +146,18 @@ createTr = function(info) {
   }
   tr.appendChild(td);
 
+  td = document.createElement('td');
+  td.setAttribute('class','delete_image');
+
+  a = document.createElement('a');
+  a.setAttribute('class','delete-image');
+  a.dataset.id = info.id
+  a.setAttribute('href','#');
+  a.href = '#'
+  a.textContent = 'Delete Picture'
+  td.appendChild(a);
+  tr.appendChild(td);
+
   return tr;
 };
 

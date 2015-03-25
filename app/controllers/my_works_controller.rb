@@ -5,7 +5,7 @@ class MyWorksController < ApplicationController
   # GET /my_works
   # GET /my_works.json
   def index
-    @my_works = MyWork.all.where.not(title: '')
+    @my_works = MyWork.all.where.not(title: '').each_slice(3).to_a
   end
 
   def show_off
