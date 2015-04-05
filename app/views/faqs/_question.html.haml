@@ -1,5 +1,6 @@
 %hr.question-hr
-%a{href: "#question-#{fq.id}"}
+- link = fq.question == 'NEW FAQ' ? fq.answer : "#question-#{fq.id}"
+%a{href: "#{link}"}
   %span.glyphicon.glyphicon-chevron-right{"aria-hidden" => "true"}
   = fq.question
   %br

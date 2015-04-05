@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top
+%nav.navbar.navbar-default.navbar-inverse.navbar-fixed-top#top-nav-bar
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
@@ -16,12 +16,15 @@
         %li{:role => "presentation", class: "#{'active' if selected == t('contact_me')}"}
           %a{:href => "/contact_me"}
             = t('contact_me')
-        %li{:role => "presentation", class: "#{'active' if selected == t('contact_me')}"}
+        %li{:role => "presentation", class: "#{'active' if selected == t('about_me')}"}
           %a{:href => "/about_me"}
             = t('about_me')
-        %li{:role => "presentation", class: "#{'active' if selected == t('contact_me')}"}
+        %li{:role => "presentation", class: "#{'active' if selected == t('faqs_path')}"}
           %a{:href => "#{faqs_path}"}
             = t('faq')
+        %li{:role => "presentation", class: "#{'active' if selected == t('my_work_path')}"}
+          %a{:href => "#{my_works_path}"}
+            = t('my_work')
       %ul.nav.navbar-nav.navbar-right
         - if current_user
           %li.dropdown

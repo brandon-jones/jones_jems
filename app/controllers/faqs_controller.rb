@@ -4,21 +4,7 @@ class FaqsController < ApplicationController
   # GET /faqs
   # GET /faqs.json
   def index
-    @subsection = 'FAQ'
-    if params["question"]
-      @faqs = []
-      Faq.all.order(:question).each do |faq|
-        @faqs << faq if faq.question.downcase.include?(params["question"].downcase)
-      end
-      render partial: 'faq' and return
-    else
-      @faqs = Faq.all.order(:question)
-    end
-  end
-
-  # GET /faqs/1
-  # GET /faqs/1.json
-  def show
+    @faqs = Faq.all.order("LOWER(question)")
   end
 
   # GET /faqs/new
@@ -30,33 +16,29 @@ class FaqsController < ApplicationController
   def edit
   end
 
+  def show
+    redirect_to faqs_path and return
+  end
+
   # POST /faqs
   # POST /faqs.json
   def create
     @faq = Faq.new(faq_params)
 
-    respond_to do |format|
-      if @faq.save
-        format.html { redirect_to @faq, notice: 'Faq was successfully created.' }
-        format.json { render :show, status: :created, location: @faq }
-      else
-        format.html { render :new }
-        format.json { render json: @faq.errors, status: :unprocessable_entity }
-      end
+    if @faq.save
+      redirect_to faqs_path, notice: 'Faq was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /faqs/1
   # PATCH/PUT /faqs/1.json
   def update
-    respond_to do |format|
-      if @faq.update(faq_params)
-        format.html { redirect_to @faq, notice: 'Faq was successfully updated.' }
-        format.json { render :show, status: :ok, location: @faq }
-      else
-        format.html { render :edit }
-        format.json { render json: @faq.errors, status: :unprocessable_entity }
-      end
+    if @faq.update(faq_params)
+      redirect_to faqs_path, notice: 'Faq was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -65,10 +47,7 @@ class FaqsController < ApplicationController
   def destroy
     @path = false
     @faq.destroy
-    respond_to do |format|
-      format.html { redirect_to last_path, notice: 'Faq was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to faqs_path, notice: 'Faq was successfully destroyed.'
   end
 
   private

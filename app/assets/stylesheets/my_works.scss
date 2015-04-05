@@ -1,0 +1,100 @@
+#image_cropbox {
+	width: 100%;
+}
+
+.tabpanel {
+	overflow: hidden;
+}
+
+#pictures-tbody {
+	& td {
+		&.mini-pic {
+			width: 100px;
+		}
+		&.description {
+			width: 40%;
+		}
+		&.file_name {
+			width: 225px;
+		}
+		&.main_image {
+			width: 50px;
+		}
+	}
+}
+
+.tab-load {
+	background-color: #F3E5FF;
+}
+
+.not-cropped {
+	border: 1px solid red !important;
+}
+
+#my-work-show-left-tabs {
+	padding: 0 0 0 0 !important;
+	overflow: hidden;
+}
+
+#my-works-index {
+	margin-top: 2em;
+}
+
+.my-work-show-col {
+	max-height: 10em;
+}
+
+.my-work-thumbnails {
+	margin-bottom: 0 !important;
+}
+
+#my-work-show {
+	padding: 1em;
+}
+
+.thumbnail-img {
+		width: 100%;
+		margin-right: auto;
+		margin-left: auto;
+	}
+
+.my-work-main-image img {
+	width: 100%;
+}
+
+#my-work-show-info {
+	background-color: white !important;
+	padding: 10px;
+	margin-right: 0;
+  height: 100%;
+  min-height: 100%;
+  display: block;
+}
+
+.drop-down-pic-options {
+	position: absolute !important;
+  top: 1em !important;
+}
+
+.edit-cog {
+  z-index: 999;
+}
+
+.thumbnail-title {
+	float: left;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: black;
+  color: white;
+  width: 100%;
+}
+
+.my-work-links {
+	position:relative;
+  margin-bottom: 2em;
+}
+
+ul.dropdown-menu {
+	float: right;
+}

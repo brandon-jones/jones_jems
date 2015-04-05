@@ -12,4 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.jcrop
+//= require papercrop
+//= require dropzone
 //= require_tree .

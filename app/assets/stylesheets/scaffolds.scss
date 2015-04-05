@@ -6,9 +6,13 @@ body {
   line-height: 18px;
   min-height: 100vh !important;
   padding-top: 51px !important;
+  height: 100%;
 }
 
-
+html {
+    height: 100%;
+    margin: 0px;
+}
 
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -81,7 +85,7 @@ div {
 }
 
 #top-nav-bar {
-  padding-top: 5px;
+  z-index: 99999;
 }
 
 .phone-radio-group {
@@ -104,6 +108,8 @@ img#title-image {
   margin-right: auto;
   position: relative;
   vertical-align: middle;
+  padding-top: 2em;
+  padding-bottom: 2em;
 }
 
 img#top-image {
@@ -223,6 +229,10 @@ p.inline {
     display: inline;
 }
 
+.inline {
+    display: inline;
+}
+
 .question-section {
   margin-bottom: 2em;
 }
@@ -235,6 +245,15 @@ p.inline {
   padding-top: 5em;
 }
 
+.remove-right-padding {
+  padding-right: 0 !important;
+}
+
+.fill { 
+  min-height: 100% !important;
+  height: 100% !important;
+}
+
 hr.question-hr {
   margin-top: 0;
   margin-bottom: 0;
@@ -244,4 +263,28 @@ span.faq-goto {
   margin-top: -51px;        /* Size of fixed header */
   padding-bottom: 51px; 
   display: inline-block;
+}
+
+.dropzone {
+min-height: 150px;
+border: 2px solid rgba(0, 0, 0, 0.3);
+background: white;
+padding: 20px 20px;
+}
+
+.dropzone.dz-clickable {
+cursor: pointer;
+}
+
+.dropzone .dz-message {
+  text-align: center;
+  margin: 2em 0;
+}
+
+.red-text {
+  color: red;
+}
+
+.remove-top-margin {
+  margin-top: 0 !important;
 }

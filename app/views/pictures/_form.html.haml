@@ -1,0 +1,27 @@
+= form_for picture do |f|
+  %input{:type => "hidden", :value => "#{picture.id}", :name =>'picture[id]'}
+  .form-group
+    = f.label :title, class: 'control-label'
+    = f.text_field :title, :class => 'form-control'
+  .form-group
+    = f.label :description, class: 'control-label'
+    = f.text_field :description, :class => 'form-control'
+  - if picture.cropped
+    .form-group
+      .row
+        .col-sm-8
+          =image_tag  picture.image.url(:large)
+        .col-sm-4
+          %p
+            This image has been cropped already and can not be recropped.
+          %button.btn.btn-default.crop-image.form-control{"aria-expanded" => "false", :type => "button", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }}
+            Save Changes 
+  - else
+    .form-group
+      .row
+        .col-sm-8
+          = f.cropbox :image, :width => 600
+        .col-sm-4
+          = f.crop_preview :image, :width => 300
+          %button.btn.btn-default.crop-image.form-control{"aria-expanded" => "false", :type => "button", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }}
+            Crop Image

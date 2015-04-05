@@ -73,3 +73,13 @@ textarea#question.contact_me_body {
 	transition-property: border-color, box-shadow;
 	transition-timing-function: ease-in-out, ease-in-out;
 }
+
+.preview-box {
+	margin-top: 20%;
+	margin-bottom: 20%;
+	margin-right: auto;
+	margin-left: auto;
+	width: 200px;
+	height: 200px;
+	background-color: blue;
+}
