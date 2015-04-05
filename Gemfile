@@ -34,6 +34,8 @@ gem "paperclip", "~> 4.2"
 gem 'papercrop'
 # gem  'mini_exiftool'
 
+gem "recaptcha", require: "recaptcha/rails", github: "ambethia/recaptcha"
+
 gem 'dropzonejs-rails'
 
 # Use ActiveModel has_secure_password

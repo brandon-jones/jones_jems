@@ -12,17 +12,17 @@
               = text_field_tag(:name, params["name"], class: "form-control make-solid",:required => true)
           
           %div.form-group
-            = label_tag(:email_label, "Email Address:", class: 'col-sm-2 control-label')
+            = label_tag(:email_label, "Email:", class: 'col-sm-2 control-label')
             %div.col-sm-10
               = email_field_tag(:email, params["email"], class: "form-control",:required => true)
           
           %div.form-group
-            = label_tag(:phone_number_label, "Phone Number:", class: 'col-sm-2 control-label')
+            = label_tag(:phone_number_label, "Phone:", class: 'col-sm-2 control-label')
             %div.col-sm-10
               = telephone_field(:phone_number, params["phone"], class: "form-control")
           
           %div.form-group
-            = label_tag(:texting_ok_label, "Is Texting Ok:", class: 'col-sm-2 control-label')
+            = label_tag(:texting_ok_label, "Texting Ok:", class: 'col-sm-2 control-label')
             %div.col-sm-10
               #input
                 .radio-inline.radio-button
@@ -36,6 +36,10 @@
             = label_tag(:question_label, "Reason for contact:", class: 'col-sm-2 control-label')
             %div.col-sm-10
               = text_area_tag(:question, params["body"], class: "form-control contact_me_body",:required => true)
+          %div.form-group
+            %div.col-sm-10.col-sm-offset-2
+              = recaptcha_tags
+
           
           %div.form-group
             %div.col-sm-10.col-sm-offset-2.actions

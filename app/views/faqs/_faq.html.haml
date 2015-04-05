@@ -2,8 +2,6 @@
   %span.faq-goto{id: "question-#{faq.id}"}
   .row.faq-question{ class: "question_#{faq.id}_flash" }
     .col-sm-11
-      %strong
-        Q
       = faq.question
     .col-sm-1.text-right
       - if current_user && current_user.admin?
@@ -11,6 +9,4 @@
   .row.faq-answer
     .col-sm-12
       %p
-        %strong
-          A
         = faq.answer
