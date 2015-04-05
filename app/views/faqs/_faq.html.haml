@@ -1,6 +1,6 @@
 - @faqs.each do |faq|
   %span.faq-goto{id: "question-#{faq.id}"}
-  .row.faq-question
+  .row.faq-question{ class: "question_#{faq.id}_flash" }
     .col-sm-11
       %strong
         Q
@@ -14,4 +14,3 @@
         %strong
           A
         = faq.answer
-  %br
