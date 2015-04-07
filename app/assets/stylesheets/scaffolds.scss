@@ -15,11 +15,11 @@ body {
 
 @font-face {
   font-family: 'national-cartoon-font';
-  src: url('/assets/national-cartoon-webfont.eot');
-  src: url('/assets/national-cartoon-webfont.eot?iefix') format('eot'),
-       url('/assets/national-cartoon-webfont.woff') format('woff'),
-       url('/assets/national-cartoon-webfont.ttf') format('truetype'),
-       url('/assets/national-cartoon-webfont.svg#webfont') format('svg');
+  src: font-url('/national-cartoon-webfont.eot');
+  src: font-url('/national-cartoon-webfont.eot?iefix') format('eot'),
+       font-url('/national-cartoon-webfont.woff') format('woff'),
+       font-url('/national-cartoon-webfont.ttf') format('truetype'),
+       font-url('/national-cartoon-webfont.svg#webfont') format('svg');
 }
 
 .main-container {
