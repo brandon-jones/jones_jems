@@ -1,10 +1,12 @@
-%p.padding-top
-  %strong Email:
-  = @user.email
-  %br
-  %strong Receive Emails:
-  = @user.receive_emails
-- if current_user && (current_user.admin? || current_user == @user)
-  = link_to 'Edit', edit_user_path(@user)
-|
-= link_to 'Back', last_path
+.row
+  .col-sm-8.col-sm-offset-2.round-corners.main-container
+    %p
+      %strong Email:
+      = @user.email
+      %br
+      %strong Receive Emails:
+      = @user.receive_emails
+    - if current_user && (current_user.admin? || current_user == @user)
+      = link_to 'Edit', edit_user_path(@user)
+    |
+    = link_to 'Back', last_path
