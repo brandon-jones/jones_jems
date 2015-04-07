@@ -6,6 +6,7 @@
         %p.text-center 
           Have a question, comment or anything else to tell me. Put it here and I will try to get back to you in a timly fassion.
         = form_tag("/contact_me", method: "post", class: "form-horizontal") do
+          = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
           %div.form-group
             = label_tag(:name_label, "Name:", class: 'col-sm-2 control-label')
             %div.col-sm-10
