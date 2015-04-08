@@ -3,7 +3,7 @@ class CreatePictures < ActiveRecord::Migration
     create_table :pictures do |t|
     	t.string :title
       t.string :description
-      t.integer :my_work_id
+      t.references :gallery, polymorphic: true, index: true
       t.attachment :image
       t.boolean :cropped, default: false
 

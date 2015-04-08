@@ -26,6 +26,8 @@ module JonesJems
       g.template_engine :haml
     end
 
+    # config.serve_static_files = true
+
     # Don't care if the mailer can't send.
     config.action_mailer.default_url_options = { :host => 'jonesjems.com' }
     config.action_mailer.delivery_method = :smtp

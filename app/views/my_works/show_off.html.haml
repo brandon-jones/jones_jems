@@ -1,6 +1,25 @@
-.row
-  - @my_works.each do |my_work|
-    .col-sm-4
-      .my-thumbnail
-        %a{ href: "/my_works/#{my_work.id}" }
-          %img.picture-ajax{data: {id: "#{my_work.cover.id}", size: 'medium'}}
+%h1 Listing my_works
+
+%table.table
+  %thead
+    %tr
+      %th Title
+      %th Tags
+      %th Description
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @my_works.each do |my_work|
+      %tr
+        %td= my_work.title
+        %td= my_work.tags
+        %td= my_work.description
+        %td= link_to 'Show', my_work
+        %td= link_to 'Edit', edit_my_work_path(my_work)
+        %td= link_to 'Destroy', my_work, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New My work', new_my_work_path

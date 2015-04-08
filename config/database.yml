@@ -35,6 +35,16 @@ test:
   username: bjones
   password:
 
+production:
+  adapter: postgresql
+  host: <%= ENV['JJ_DB_HOST'] %>
+  port: 5432
+  encoding: unicode
+  database: <%= ENV['JJ_DB_DATABASE'] %>
+  pool: 5
+  username: <%= ENV['JJ_DB_USER'] %>
+  password: <%= ENV['JJ_DB_PASSWORD'] %>
+
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
   # domain sockets, so uncomment these lines.

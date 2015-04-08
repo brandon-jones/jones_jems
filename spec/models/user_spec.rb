@@ -2,11 +2,13 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   context "methods" do
-		it "expects the email to be downcased" do
+  	it "expects the email to be downcased" do
 			user = FactoryGirl.create(:user, email: 'TEST@TEST.COM')
 			expect(user.email).to eq('test@test.com')
 		end
+	end
 
+  context "validations" do
 		it "expects a password to be at least 6 characters" do
 			user = FactoryGirl.build(:user, password: 'fail')
 			expect(user.save).to eq(false)
@@ -33,6 +35,13 @@ RSpec.describe User, type: :model do
 			user = FactoryGirl.build(:user, email: '')
 			expect(user.save).to eq(false)
 			user.email = "valid@valid.com"
+			expect(user.save).to eq(true)
+		end
+
+		it "expects password confirmation to match" do
+			user = FactoryGirl.build(:user, password: 'password', password_confirmation: 'longenough')
+			expect(user.save).to eq(false)
+			user.password_confirmation = 'password'
 			expect(user.save).to eq(true)
 		end
 	end

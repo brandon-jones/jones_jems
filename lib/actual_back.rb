@@ -1,8 +1,12 @@
 # lib/money_attributes.rb
 module ActualBack
-  def set_last_path path
-  	unless @path == false
-    	session[:_tl_last_path] = path unless path == '/login' || path == '/logout'
+
+	@@banned_paths = [ '/login',
+									 	 '/logout']
+
+ 	def set_last_path path
+  	unless @path == false || @@banned_paths.include?(path)
+    	session[:_tl_last_path] = path
     end
   end
 

@@ -5,8 +5,8 @@ class PicturesController < ApplicationController
   # GET /pictures
   # GET /pictures.json
   def index
-    render nothing: true and return unless params["my_work_id"]
-    @pictures = Picture.where(my_work_id: params["my_work_id"])
+    render nothing: true and return unless params["gallery_id"] && params["gallery_type"]
+    @pictures = params["gallery_type"].constantize.find_by_id(params["gallery_id"]).pictures
     render partial: 'index', locals: { pictures: @pictures }
   end
 
@@ -46,7 +46,6 @@ class PicturesController < ApplicationController
 
     respond_to do |format|
       if @picture.save
-        binding.pry
         format.html { redirect_to @picture, notice: 'Picture was successfully created.' }
         format.json { render json: @picture.to_json(:methods => :thumbnail)}
       else
@@ -82,10 +81,11 @@ class PicturesController < ApplicationController
   # DELETE /pictures/1
   # DELETE /pictures/1.json
   def destroy
+    pic = @picture.to_json
     @picture.destroy
     respond_to do |format|
       format.html { redirect_to pictures_url, notice: 'Picture was successfully destroyed.' }
-      format.json { head :no_content }
+      format.json { render json: pic }
     end
   end
 
@@ -97,6 +97,6 @@ class PicturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def picture_params
-      params.require(:picture).permit(:title, :description, :my_work_id, :image, :image_original_w, :image_original_h, :image_box_w, :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h, :image_aspect)
+      params.require(:picture).permit(:title, :description, :gallery_id, :gallery_type, :image, :image_original_w, :image_original_h, :image_box_w, :image_crop_x, :image_crop_y, :image_crop_w, :image_crop_h, :image_aspect)
     end
 end

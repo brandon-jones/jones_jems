@@ -1,3 +1,12 @@
 // Place all the styles related to the Faqs controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+a.no-hover-effects {
+	color: #F3E5FF;
+  &:hover, &:visited {
+    text-decoration: none;
+    background-color: transparent;
+    color: inherit;
+    cursor: pointer;
+  }
+}

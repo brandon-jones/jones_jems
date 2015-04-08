@@ -28,12 +28,13 @@ gem 'braintree', '~> 2.38.0'
 
 gem 'bcrypt', '~> 3.1.7'
 
+gem 'rails_12factor', group: :production
+
 gem "paperclip", "~> 4.2"
 gem 'papercrop'
 # gem  'mini_exiftool'
 
 gem 'dropzonejs-rails'
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -69,5 +70,4 @@ group :test do
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'factory_girl_rails'
-  gem 'rb-fsevent' if `uname` =~ /Darwin/
 end

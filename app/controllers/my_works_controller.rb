@@ -5,7 +5,7 @@ class MyWorksController < ApplicationController
   # GET /my_works
   # GET /my_works.json
   def index
-    @my_works = MyWork.all.where.not(title: '')
+    @my_works = MyWork.all.where.not(title: '').each_slice(3).to_a
   end
 
   def show_off
@@ -26,13 +26,13 @@ class MyWorksController < ApplicationController
 
     @my_work = MyWork.create() unless @my_work
 
-    @pictures = Picture.where(my_work: @my_work.id)
+    @pictures = @my_work.pictures
 
   end
 
   # GET /my_works/1/edit
   def edit
-    @pictures = Picture.where(my_work: @my_work.id)
+    @pictures = @my_work.pictures
   end
 
   # POST /my_works
@@ -61,7 +61,7 @@ class MyWorksController < ApplicationController
   # PATCH/PUT /my_works/1.json
   def update
     @my_work.update_attribute(:published, true)
-    params["my_work"]["tags"] = params["my_work"]["tags"].split(' ').uniq!.join(' ') if params["my_work"] && params["my_work"]["tags"] && params["my_work"]["tags"].present?
+    params["my_work"]["tags"] = params["my_work"]["tags"].split(' ').uniq.join(' ') if params["my_work"] && params["my_work"]["tags"] && params["my_work"]["tags"].present?
     respond_to do |format|
       if @my_work.update(my_work_params)
         format.html { redirect_to @my_work, notice: 'My work was successfully updated.' }

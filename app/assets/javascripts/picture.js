@@ -98,7 +98,8 @@ createInput = function(image) {
   input.setAttribute('type','radio');
   input.setAttribute('value','true');
   input.setAttribute('class','update-main-image');
-  input.setAttribute('data-id',image.my_work_id);
+  input.setAttribute('data-id',image.gallery_id);
+  input.setAttribute('data-type',image.class);
   input.setAttribute('data-cover',image.id);
   return input;
 };

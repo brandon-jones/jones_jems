@@ -23,19 +23,14 @@
     - if params["action"] == "home"
       - id = 'header'
       - pic_id = 'top-image'
-    .row{id: id}
-      - unless @header_image && @header_image == "false"
-        = image_tag("full_logo.png", :alt => "banner", :id => pic_id, class: 'img-responsive')
     .container-fluid
-      .row
-        - if params["action"] == "home"
-          .col-sm-10.col-sm-offset-1
-            .row 
-              .col-sm-12
-                = yield
-        - else
+      .row{id: id}
+        - unless @header_image && @header_image == "false"
+          = image_tag("full_logo.png", :alt => "banner", :id => pic_id, class: 'img-responsive')
+      - if params["action"] == "home"
+        = yield
+      - else
+        .row
           .col-sm-10.col-sm-offset-1.grey.round-corners
-            .row
-              .col-sm-10.col-sm-offset-1
-                = yield
+            = yield
     %footer

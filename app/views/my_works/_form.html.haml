@@ -21,8 +21,9 @@
     = f.submit nil, :class => 'btn btn-primary'
 
 %form.dropzone#myAwesomeDropzone{:action => "/pictures"}
+%input{:type => "hidden", :value => "#{@my_work.id}", :id =>'gallery_id'}
+%input{:type => "hidden", :value => "#{@my_work.class.to_s}", :id =>'gallery_type'}
 %input{:type => "hidden", :value => "#{form_authenticity_token}", :id =>'session_key'}
-%input{:type => "hidden", :value => "#{@my_work.id}", :id =>'my_work_id'}
 
 %div.tabpanel
   / Nav tabs
@@ -44,9 +45,10 @@
           $(document).ready(function() {
             $.ajax({
               type: "GET",
-              url: "/pictures?my_work_id="+"#{@my_work.id}",
+              url: "/pictures?gallery_id="+"#{@my_work.id}"+"&gallery_type=MyWork",
               success: function(data, textStatus, jqXHR) {
                 $('#pictures').html(data);
+                $('.delete-image').on("click", deleteImage);
                 return $('.update-main-image').on("change", updateMainImage);
               }
             });

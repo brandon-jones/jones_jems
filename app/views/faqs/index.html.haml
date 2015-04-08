@@ -1,19 +1,11 @@
 %h1.text-center Frequenty Asked Questions
-%br
-- if current_user && current_user.admin?
-  %input{:type => "hidden", :value => "#{form_authenticity_token}", :id =>'session_key'}
 .row.faq-questions
-  - if current_user && current_user.admin?
-    .col-sm-10
-      - @faqs.each do |fq|
-        = render partial: 'question', locals: { fq: fq }
-    .col-sm-2
-      = link_to 'New FAQ', new_faq_path, class: 'btn btn-default btn-lg'
-  - else
-    .col-sm-12
-      - @faqs.each do |fq|
-        = render partial: 'question', locals: { fq: fq }
+  .col-sm-12
+    - if current_user && current_user.admin?
+      = render partial: 'question', locals: { fq: Faq.new(question: 'NEW FAQ', answer: '/faqs/new') }
+    - @faqs.each do |fq|
+      = render partial: 'question', locals: { fq: fq }
 #faq-section
   = render partial: 'faq'
 %p
-  = link_to "To The Top!", '#top'
+  = link_to "To The Top!", '#top', class: 'btn btn-default btn-xs'

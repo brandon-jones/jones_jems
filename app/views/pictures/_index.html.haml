@@ -18,9 +18,9 @@
         %td.file_name= picture.image_file_name
         %td.main_image
           - if picture.cropped
-            %input.update-main-image{:name => "main_image", :type => "radio", :value => "true", :checked => "#{picture.cover? ? true : false }", data: { id: picture.my_work_id, cover: picture.id }}
+            %input.update-main-image{:name => "main_image", :type => "radio", :value => "true", :checked => "#{picture.cover? ? true : false }", data: { id: picture.gallery_id, cover: picture.id, type: picture.gallery_type }}
           - else
             CROP
         %td
-          = link_to "Delete picture", picture, :data => { :confirm => "Are you sure?" }, :method => :delete          
+          %a.delete-image{href: '#', data: { id: picture.id }} Delete picture        
 %br
