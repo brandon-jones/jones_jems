@@ -136,35 +136,34 @@ RSpec.describe FaqsController, :type => :controller do
         login_user
       end
 
-      it "creates a new Faq" do
+      it "does not create new FAQ" do
         expect {
           post :create, {:faq => valid_attributes}
         }.to change(Faq, :count).by(0)
       end
 
-      it "assigns a newly created faq as @faq" do
+      it "does not assign a newly created faq as @faq" do
         post :create, {:faq => valid_attributes}
-        expect(assigns(:faq)).to be_a(Faq)
+        expect(assigns(:faq)).to be_nil
         expect(assigns(:faq)).to redirect_to(root_path)
       end
 
-      it "redirects to the created faq" do
+      it "redirects to the root_path" do
         post :create, {:faq => valid_attributes}
         expect(response).to redirect_to(root_path)
       end
     end
 
     describe "with valid params not logged in" do
-      it "creates a new Faq" do
+      it "does not create a new Faq" do
         expect {
           post :create, {:faq => valid_attributes}
-        }.to redirect_to(root_path)
+        }.to change(Faq, :count).by(0)
       end
 
-      it "assigns a newly created faq as @faq" do
+      it "does not assigns a newly created faq as @faq" do
         post :create, {:faq => valid_attributes}
-        expect(assigns(:faq)).to redirect_to(root_path)
-        expect(assigns(:faq)).to redirect_to(root_path)
+        expect(assigns(:faq)).to be_nil
       end
 
       it "redirects to the created faq" do
@@ -176,12 +175,12 @@ RSpec.describe FaqsController, :type => :controller do
     describe "with invalid params" do
       it "assigns a newly created but unsaved faq as @faq" do
         post :create, {:faq => invalid_attributes}
-        expect(assigns(:faq)).to be_a_new(Faq)
+        expect(assigns(:faq)).to be_nil
       end
 
-      it "re-renders the 'new' template" do
+      it "redirects to root path" do
         post :create, {:faq => invalid_attributes}
-        expect(response).to render_template("new")
+        expect(response).to redirect_to(root_path)
       end
     end
   end
