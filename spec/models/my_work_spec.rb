@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe MyWork, type: :model do
   context "methods" do
+   	
    	before(:each) do
     	@my_work = FactoryGirl.create(:my_work)
   	end
+
 		it "expects a true or false if picture_id present" do
 			expect(@my_work.cover?).to eq(false)
 			@my_work.update_attribute(:picture_id, 1)
