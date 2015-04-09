@@ -4,6 +4,7 @@ class FaqsController < ApplicationController
   # GET /faqs
   # GET /faqs.json
   def index
+    @subsection = 'FAQs'
     @faqs = Faq.all.order("LOWER(question)")
   end
 
