@@ -25,7 +25,7 @@
     .container-fluid
       .row{id: id}
         - unless @header_image && @header_image == "false"
-          = image_tag("full_logo.png", :alt => "banner", :id => pic_id, class: 'img-responsive')
+          = image_tag("full_logo.png", :alt => "banner", :id => pic_id, class: 'img-responsive', data: { width: '485', height: '218' })
       - if params["action"] == "home"
         = yield
       - else

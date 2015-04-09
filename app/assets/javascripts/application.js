@@ -17,31 +17,40 @@
 //= require dropzone
 //= require_tree .
 
-
-
-
 $(document).ready(function() {
-	jQuery.fn.center = function () {
+  jQuery.fn.center = function (img_width, img_height) {
+    var img_h = $(this).outerHeight();
+    var img_w = $(this).outerWidth();
+    // half of the toolbars height to account for it
+    var toolbar_height = 25;
+    if (img_h == 0) {
+      img_h = parseInt(img_height);
+    }
+    if (img_w == 0) {
+      img_w = parseInt(img_width);
+    }
     this.css("position","absolute");
-    this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + 
-                                                $(window).scrollTop()) + "px");
-    this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + 
+    this.css("top", Math.max(0, (($(window).height() - img_h) / 2) + 
+                                                $(window).scrollTop() + toolbar_height) + "px");
+    this.css("left", Math.max(0, (($(window).width() - img_w) / 2) + 
                                                 $(window).scrollLeft()) + "px");
+    window.onresize = function(event) { 
+      centerImage();
+    };
     return this;
-	}
+  }
   return centerImage();
 });
 
-window.onresize = function(event) { 
-	centerImage();
-};
+
 
 centerImage = function(e) {
-	var image = $('#js-center-image');
-	if (image) {
-		image.center();
-	}
-	
-	
+  console.log('image is being checked');
+  var image = $('#js-center-image');
+  var width = image[0].dataset.width;
+  var height = image[0].dataset.height;
+  if (image.length > 0) {
+    image.center(width, height);
+  }
 };
 

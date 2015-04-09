@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticated_admin?, except: [:new, :show, :edit, :create, :update]
   before_action :non_auth_only, only: :new
+  before_action :disabled, only: :create
 
   def non_auth_only
     redirect_to root_url if current_user

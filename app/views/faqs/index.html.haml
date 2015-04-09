@@ -1,12 +1,13 @@
 .row
   .col-sm-10.col-sm-offset-1
-    %h1.text-center.main-container.round-corners.faq-main.ntf Frequenty Asked Questions
-    .row.faq-questions
-      .col-sm-12
-        - if current_user && current_user.admin?
-          = render partial: 'question', locals: { fq: Faq.new(question: 'NEW FAQ', answer: '/faqs/new') }
-        - @faqs.each do |fq|
-          = render partial: 'question', locals: { fq: fq }
+    .main-container.round-corners.faq-main
+      %h1.text-center.ntf Frequenty Asked Questions
+      .row
+        .col-sm-10.col-sm-offset-1.faq-questions.faq-questions
+          - if current_user && current_user.admin?
+            = render partial: 'question', locals: { fq: Faq.new(question: 'NEW FAQ', answer: '/faqs/new') }
+          - @faqs.each do |fq|
+            = render partial: 'question', locals: { fq: fq }
     #faq-section
       = render partial: 'faq'
     %p
