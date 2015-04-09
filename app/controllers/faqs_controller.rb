@@ -10,6 +10,7 @@ class FaqsController < ApplicationController
 
   # GET /faqs/new
   def new
+    @subsection = 'New FAQ'
     @faq = Faq.new
   end
 
