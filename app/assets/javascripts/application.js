@@ -47,9 +47,9 @@ $(document).ready(function() {
 centerImage = function(e) {
   console.log('image is being checked');
   var image = $('#js-center-image');
-  var width = image[0].dataset.width;
-  var height = image[0].dataset.height;
   if (image.length > 0) {
+    var width = image[0].dataset.width;
+    var height = image[0].dataset.height;
     image.center(width, height);
   }
 };
