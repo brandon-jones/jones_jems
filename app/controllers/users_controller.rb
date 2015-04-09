@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    @subsection = 'New User'
     @user = User.new
   end
 
