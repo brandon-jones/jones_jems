@@ -9,6 +9,10 @@ Bundler.require(*Rails.groups)
 module JonesJems
   class Application < Rails::Application
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
+    
+    $CONTACT_ME_EMAIL = Rails.env == 'development' ? 'brandon.jones9@gmail.com' : 'colleen@jonesjems.com'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

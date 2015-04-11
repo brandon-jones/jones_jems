@@ -10,3 +10,74 @@ a.no-hover-effects {
     cursor: pointer;
   }
 }
+
+.faq-search {
+	color: black !important;
+}
+
+.faq-main {
+	min-height: 0 !important;
+}
+
+.faq-questions {
+  background: rgb(239, 219, 255) !important;
+  background: rgba(239, 219, 255, 0.6) !important;
+  background-color: #efdbff;
+  padding: 1em 1em 1em 1em;
+  line-height: 2em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+  margin-top: 2.5em;
+  margin-bottom: 1.5em;
+}
+
+.faq-question {
+  background: rgb(189, 89, 255);
+  background: rgba(189, 89, 255, 0.6);
+  padding: 1em 1em 1em 1em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px 10px 0 0;
+  padding: 1em 1em 1em 1em;
+  border-top: 1px solid black;
+  border-right: 1px solid black; 
+  border-left: 1px solid black;
+}
+
+.faq-answer {
+  background: rgb(239, 219, 255) !important;
+  background: rgba(239, 219, 255, 0.6) !important;
+  background-color: #efdbff;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 0 0 10px 10px;
+  padding: 1em 1em 1em 1em;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black; 
+  border-left: 1px solid black;
+}
+
+@-webkit-keyframes flasher {
+  from { background-color: #ffffff; }
+  to { background: rgb(239, 219, 255) !important; background: rgba(239, 219, 255, 0.6) !important; }
+}
+@-moz-keyframes flasher {
+  from { background-color: #ffffff; }
+  to { background: rgb(239, 219, 255) !important; background: rgba(239, 219, 255, 0.6) !important; }
+}
+@-o-keyframes flasher {
+  from { background-color: #ffffff; }
+  to { background: rgb(239, 219, 255) !important; background: rgba(239, 219, 255, 0.6) !important; }
+}
+@keyframes flasher {
+  from { background-color: #ffffff; }
+  to { background: rgb(239, 219, 255) !important; background: rgba(239, 219, 255, 0.6) !important; }
+}
+.flasher {
+  -webkit-animation: flasher 1s; /* Safari 4+ */
+  -moz-animation:    flasher 1s; /* Fx 5+ */
+  -o-animation:      flasher 1s; /* Opera 12+ */
+  animation:         flasher 1s; /* IE 10+ */
+}

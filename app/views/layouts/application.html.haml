@@ -14,7 +14,6 @@
     = favicon_link_tag 'logo.ico'
     %script{:src => "https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"}
     %script{:src => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"}
-    %script{:src => "https://js.braintreegateway.com/v2/braintree.js"}
   %body
     = flash_msg(true)
     = render partial: 'layouts/top_nav'
@@ -22,15 +21,13 @@
     - pic_id = 'title-image'
     - if params["action"] == "home"
       - id = 'header'
-      - pic_id = 'top-image'
+      - pic_id = 'js-center-image'
     .container-fluid
       .row{id: id}
         - unless @header_image && @header_image == "false"
-          = image_tag("full_logo.png", :alt => "banner", :id => pic_id, class: 'img-responsive')
+          = image_tag("full_logo.png", :alt => "banner", :id => pic_id, class: 'img-responsive', data: { width: '485', height: '218' })
       - if params["action"] == "home"
         = yield
       - else
-        .row
-          .col-sm-10.col-sm-offset-1.grey.round-corners
-            = yield
+        = yield
     %footer

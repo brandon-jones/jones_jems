@@ -11,20 +11,18 @@
         = image_tag("logo.png", :alt => "Brand", id: 'brand-icon')
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      - selected = selected ? selected.gsub('_',' ').split.map(&:capitalize).join(' ') : nil
+      - puts params
+      - selected = params["controller"] + "_" + params["action"]
       %ul.nav.navbar-nav
-        %li{:role => "presentation", class: "#{'active' if selected == t('contact_me')}"}
+        %li{:role => "presentation", class: "#{'active' if selected == 'static_pages_contact_me' }"}
           %a{:href => "/contact_me"}
             = t('contact_me')
-        %li{:role => "presentation", class: "#{'active' if selected == t('about_me')}"}
+        %li{:role => "presentation", class: "#{'active' if selected == 'static_pages_about_me' }"}
           %a{:href => "/about_me"}
             = t('about_me')
-        %li{:role => "presentation", class: "#{'active' if selected == t('faqs_path')}"}
+        %li{:role => "presentation", class: "#{'active' if selected == 'faqs_index' }"}
           %a{:href => "#{faqs_path}"}
             = t('faq')
-        %li{:role => "presentation", class: "#{'active' if selected == t('my_work_path')}"}
-          %a{:href => "#{my_works_path}"}
-            = t('my_work')
       %ul.nav.navbar-nav.navbar-right
         - if current_user
           %li.dropdown
@@ -36,11 +34,6 @@
                 %a{:href => "#{user_path(current_user.id)}"} 
                   Profile
               %li.divider
-              - if current_user.admin?
-                %li
-                  %a{:href => "/admin_panel"} 
-                    Admin Panel
-                %li.divider
               %li
                 %a{:href => "#{logout_path}"} 
                   = t('logout')

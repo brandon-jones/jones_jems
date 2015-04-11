@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
   before_filter :debug_title if Rails.env.development?
   after_filter :actual_back
 
+  def disabled
+    redirect_to root_path and return
+  end
+
   def debug_header(text)
     bars = "=" *80
     Rails.logger.debug("\n\e[1;31m#{bars}\n#{text}\n#{bars}\e[0m")

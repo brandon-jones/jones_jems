@@ -21,8 +21,8 @@
       = f.password_field :password_confirmation, class: 'form-control'
   .form-group
     = f.label 'Receive Emails?', class: 'col-sm-2 control-label'
-    %div.col-sm-10
+    %div.col-sm-1
       = f.check_box :receive_emails, class: 'form-control', checked: true, value: true
   .form-group
     %div.col-sm-offset-2
-      = f.submit 'Submit', class: 'btn btn-primary btn-lg'
+      = f.submit 'Go!', class: 'btn btn-blue btn-lg'

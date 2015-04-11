@@ -34,7 +34,11 @@ gem "paperclip", "~> 4.2"
 gem 'papercrop'
 # gem  'mini_exiftool'
 
+gem "recaptcha", require: "recaptcha/rails", github: "ambethia/recaptcha"
+
 gem 'dropzonejs-rails'
+
+gem 'mandrill-api', '~> 1.0.53'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

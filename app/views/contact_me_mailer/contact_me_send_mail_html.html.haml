@@ -1,0 +1,18 @@
+Hello Colleen #{@user} has a question
+
+%p 
+  %h3 Person
+  = @name
+%p
+  %h3 Email
+  = @email
+- if @phone_number
+  %p
+    %h3 Phone
+    = @phone_number
+    %br
+    texting:
+    = @texting
+%p
+  %h3 What they say
+  = @question

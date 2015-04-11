@@ -1,11 +1,11 @@
 module SpecTestHelper   
   def login_admin
-    user = FactoryGirl.create(:user, admin: true)
-    request.session[:user_id] = user.id
+    @admin = FactoryGirl.create(:user, email: 'admin@test.com', admin: true)
+    request.session[:user_id] = @admin.id
   end
 
   def login_user
-    user = FactoryGirl.create(:user)
-    request.session[:user_id] = user.id
+    @user = FactoryGirl.create(:user, email: 'user@test.com')
+    request.session[:user_id] = @user.id
   end
 end

@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticated_admin?, except: [:new, :show, :edit, :create, :update]
+  before_action :non_auth_only, only: :new
+  before_action :disabled, only: :create
+
+  def non_auth_only
+    redirect_to root_url if current_user
+  end
   # GET /users
   # GET /users.json
   def index
@@ -14,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    @subsection = 'New User'
     @user = User.new
   end
 
@@ -24,7 +31,6 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    binding.pry
     @user = User.new(user_params)
 
     respond_to do |format|

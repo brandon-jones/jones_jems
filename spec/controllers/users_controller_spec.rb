@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe FaqsController, :type => :controller do
+RSpec.describe UsersController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Faq. As you add validations to Faq, be sure to
@@ -36,19 +36,25 @@ RSpec.describe FaqsController, :type => :controller do
   # FaqsController. Be sure to keep this updated too.
 
   describe "GET index" do
-    it "assigns all faqs as @faqs" do
-      faq = FactoryGirl.create(:faq)
+    it "assigns all users as @users" do
+      login_admin
+      usr = FactoryGirl.create(:user, email: 'test2@test.com')
       get :index, {}
-      expect(assigns(:faqs)).to eq([faq])
+      expect(assigns(:user)).to eq([@user,usr])
+    end
+
+    it "renders index" do
+      login_admin
+      get :index
+      expect(response).to render("index")
     end
   end
 
   describe "GET show" do
-    it "redirects to faqs for admins" do
-      login_admin
-      faq = FactoryGirl.create(:faq)
-      get :show, {:id => faq.to_param}
-      expect(assigns(:faq)).to redirect_to(faqs_path)
+    it "renders the show view" do
+      login_user
+      get user_path(@user)
+      expect(response).to render("show")
     end
 
     it "redirects to faqs for users" do
@@ -186,68 +192,88 @@ RSpec.describe FaqsController, :type => :controller do
   end
 
   describe "PUT update" do
-    before(:each) do
-      login_admin
-    end
-
-    describe "with valid params" do
-      let(:new_attributes) {
-        {question: 'diff qusetion', answer: 'new answer'}
-      }
-
-      it "updates the requested faq" do
-        faq = FactoryGirl.create(:faq)
-        put :update, {:id => faq.to_param, :faq => new_attributes}
-        faq.reload
-        expect(faq.question).to eq(new_attributes[:question])
-        expect(faq.answer).to eq(new_attributes[:answer])
+    describe "as admin" do
+      before(:each) do
+        login_admin
       end
 
-      it "assigns the requested faq as @faq" do
-        faq = FactoryGirl.create(:faq)
-        put :update, {:id => faq.to_param, :faq => valid_attributes}
-        expect(assigns(:faq)).to eq(faq)
+      describe "with valid params" do
+
+        it "updates the requested user" do
+          faq = FactoryGirl.create(:user)
+          put :update, {:id => user.to_param, :user => {email: 'new@test.com'}}
+          user.reload
+          expect(user.email).to eq('new@test.com')
+        end
+
+        it "assigns the requested faq as @faq" do
+          faq = FactoryGirl.create(:faq)
+          put :update, {:id => faq.to_param, :faq => valid_attributes}
+          expect(assigns(:faq)).to eq(faq)
+        end
+
+        it "redirects to the faq" do
+          faq = FactoryGirl.create(:faq)
+          put :update, {:id => faq.to_param, :faq => valid_attributes}
+          expect(response).to redirect_to(faqs_path)
+        end
       end
 
-      it "redirects to the faq" do
-        faq = FactoryGirl.create(:faq)
-        put :update, {:id => faq.to_param, :faq => valid_attributes}
-        expect(response).to redirect_to(faqs_path)
-      end
-    end
+      describe "with invalid params" do
+        it "assigns the faq as @faq" do
+          faq = FactoryGirl.create(:faq)
+          put :update, {:id => faq.to_param, :faq => invalid_attributes}
+          expect(assigns(:faq)).to eq(faq)
+        end
 
-    describe "with invalid params" do
-      it "assigns the faq as @faq" do
-        faq = FactoryGirl.create(:faq)
-        put :update, {:id => faq.to_param, :faq => invalid_attributes}
-        expect(assigns(:faq)).to eq(faq)
-      end
-
-      it "re-renders the 'edit' template" do
-        faq = FactoryGirl.create(:faq)
-        put :update, {:id => faq.to_param, :faq => invalid_attributes}
-        expect(response).to render_template("edit")
+        it "re-renders the 'edit' template" do
+          faq = FactoryGirl.create(:faq)
+          put :update, {:id => faq.to_param, :faq => invalid_attributes}
+          expect(response).to render_template("edit")
+        end
       end
     end
   end
 
   describe "DELETE destroy" do
-    before(:each) do
-      login_admin
+    describe "as admin" do
+      before(:each) do
+        login_admin
+      end
+
+      it "destroys the requested faq" do
+        faq = FactoryGirl.create(:faq)
+        expect {
+          delete :destroy, {:id => faq.to_param}
+        }.to change(Faq, :count).by(-1)
+      end
+
+      it "redirects to the users list" do
+        user = FactoryGirl.create(:user)
+        delete :destroy, {:id => user.to_param}
+        expect(response).to redirect_to(users_url)
+      end
     end
 
-    it "destroys the requested faq" do
-      faq = FactoryGirl.create(:faq)
-      expect {
-        delete :destroy, {:id => faq.to_param}
-      }.to change(Faq, :count).by(-1)
+    describe "as user" do
+      before(:each) do
+        login_user
+      end
+
+      it "does not destroy the requested faq" do
+        faq = FactoryGirl.create(:faq)
+        expect {
+          delete :destroy, {:id => faq.to_param}
+        }.to change(Faq, :count).by(0)
+      end
+
+      it "redirects to the root path" do
+        user = FactoryGirl.create(:user)
+        delete :destroy, {:id => user.to_param}
+        expect(response).to redirect_to(root_path)
+      end
     end
 
-    it "redirects to the faqs list" do
-      faq = FactoryGirl.create(:faq)
-      delete :destroy, {:id => faq.to_param}
-      expect(response).to redirect_to(faqs_url)
-    end
   end
 
 end
