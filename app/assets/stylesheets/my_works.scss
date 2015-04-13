@@ -6,6 +6,10 @@
 	overflow: hidden;
 }
 
+.my-works-images {
+  margin-top: 2.5em;
+}
+
 #pictures-tbody {
 	& td {
 		&.mini-pic {
@@ -33,19 +37,10 @@
 
 #my-work-show-left-tabs {
 	padding: 0 0 0 0 !important;
-	overflow: hidden;
-}
-
-#my-works-index {
-	margin-top: 2em;
 }
 
 .my-work-thumbnails {
 	margin-bottom: 0 !important;
-}
-
-#my-work-show {
-	padding: 1em;
 }
 
 .thumbnail-img {
@@ -58,8 +53,11 @@
 	width: 100%;
 }
 
+#my-work-show {
+	padding: 1em;
+}
+
 #my-work-show-info {
-	background-color: white !important;
 	padding: 10px;
 }
 

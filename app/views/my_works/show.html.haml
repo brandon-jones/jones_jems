@@ -1,14 +1,22 @@
-.row#my-work-show
-  .col-sm-10.col-sm-offset-1.main-container
-    .row
+.row
+  .col-sm-10.col-sm-offset-1.main-container#my-work-show
+    .visible-xs
+      %h1.text-center
+        = render partial: 'admin_options', locals: { my_work: @my_work }
+        = @my_work.title
       .col-sm-6.remove-right-padding
+        .row
+          .col-sm-11
+            = render partial: 'description'
+    .row
+      .col-sm-6
         %div.tabbable.tabs-left{:role => "tabpanel"}
           .row
-            .col-sm-2.col-sm-offset-1#my-work-show-left-tabs
+            .col-sm-2.col-sm-offset-1.col-xs-10.col-xs-offset-1#my-work-show-left-tabs
               = render partial: 'thumbnail_list'
-            .col-sm-9
+            .col-sm-9.hidden-xs
               = render partial: 'full_image'
-      .col-sm-6.remove-right-padding
+      .col-sm-6.remove-right-padding.hidden-xs
         .row
           .col-sm-11
             = render partial: 'description'

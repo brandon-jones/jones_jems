@@ -2,8 +2,23 @@ $(document).ready(function() {
   $('.tab-load').on("click", loadTabContents);
   $('.edit-image').on("click", editImage);
   $('.delete-image').on("click", deleteImage);
+  $('.my-work-title').on("mouseover", showFullTitle);
+  $('.my-work-title').on("mouseout", showFullTitle);
   loadImage();
 });
+
+hideFullTitle = function(e) {
+  console.log('tested');
+};
+
+showFullTitle = function(e) {
+  var fullItemId = '#my-work-title-'+this.dataset.myWorkId;
+  var itemDesc = $(fullItemId);
+
+  var temp = itemDesc[0].dataset.full;
+  itemDesc[0].dataset.full = itemDesc.text();
+  itemDesc.text(temp);
+};
 
 deleteImage = function(e) {
   e.stopPropagation();
