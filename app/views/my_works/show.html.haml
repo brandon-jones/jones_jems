@@ -1,17 +1,10 @@
-.row#my-work-show
+.row#my-work-show.round-corners.main-container
   .col-sm-8.remove-right-padding.my-work-show-col
     %div.tabbable.tabs-left{:role => "tabpanel"}
       .row
         / Nav tabs
         .col-sm-2#my-work-show-left-tabs
-          %ul.nav{:role => "tablist"}
-            - active = true
-            %li{:role => "presentation",class: "#{active ? 'active' : ''}"}
-              - @pictures.each do |pic|
-                .my-work-thumbnails
-                  %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "##{pic.name_id}", :role => "tab"}
-                    %img.picture-ajax.thumbnail-img{data: {id: "#{pic.id}", size: 'thumbnail'}}
-                    - active = false
+          = render partial: 'thumbnail_list'
         / Tab panes
         .col-sm-10.hidden-xs
           .tab-content

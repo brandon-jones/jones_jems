@@ -1,19 +1,20 @@
-#my-works-index
-  - @my_works.each do |my_work_group|
-    .row
-    - my_work_group.each do |my_work|
-      .col-sm-4
-        .my-thumbnail.my-work-links
-          .thumbnail-title.text-center
-            =my_work.title
-          - if current_user && current_user.admin?
-            .dropdown
-              %a.no-hover-effects.pull-right{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-                %span.glyphicon.glyphicon-cog.tf-options{"aria-hidden" => "true"}
-              %ul.dropdown-menu.pull-right.drop-down-pic-options{"aria-labelledby" => "dLabel", :role => "menu"}
-                %li
-                  = link_to 'Edit', edit_my_work_path(my_work)
-                %li
-                  = link_to 'Destroy', my_work, method: :delete, data: { confirm: 'Are you sure? I can NOT undo this.' }
-          %a{ href: "/my_works/#{my_work.id}" }
-            %img.picture-ajax.img-responsive{data: {id: "#{my_work.cover.id}", size: 'medium'}}
+.row
+  .col-sm-10.col-sm-offset-1
+    #my-works-index
+      .rows
+        - @my_works.each do |my_work|
+          .col-lg-2.col-md-2.col-sm-3.col-xs-4
+            .my-thumbnail.my-work-links
+              .thumbnail-title.text-center
+                =truncate(my_work.title)
+              - if current_user && current_user.admin?
+                .dropdown
+                  %a.no-hover-effects.pull-right{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                    %span.glyphicon.glyphicon-cog.tf-options{"aria-hidden" => "true"}
+                  %ul.dropdown-menu.pull-right.drop-down-pic-options{"aria-labelledby" => "dLabel", :role => "menu"}
+                    %li
+                      = link_to 'Edit', edit_my_work_path(my_work)
+                    %li
+                      = link_to 'Destroy', my_work, method: :delete, data: { confirm: 'Are you sure? I can NOT undo this.' }
+              %a{ href: "/my_works/#{my_work.id}" }
+                %img.picture-ajax.img-responsive{data: {id: "#{my_work.cover.id}", size: 'medium'}}

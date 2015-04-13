@@ -1,0 +1,8 @@
+%ul.nav{:role => "tablist"}
+  - active = true
+  %li{:role => "presentation",class: "#{active ? 'active' : ''}"}
+    - @pictures.each do |pic|
+      .my-work-thumbnails
+        %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "##{pic.name_id}", :role => "tab"}
+          %img.picture-ajax.thumbnail-img{data: {id: "#{pic.id}", size: 'thumbnail'}}
+          - active = false

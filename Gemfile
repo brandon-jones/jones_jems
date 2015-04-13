@@ -24,8 +24,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'haml-rails', '~> 0.8.2'
 
-gem 'braintree', '~> 2.38.0'
-
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'rails_12factor', group: :production

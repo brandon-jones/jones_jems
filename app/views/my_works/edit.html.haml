@@ -1,7 +1,11 @@
-%h1 Editing my_work
+.row
+  .col-sm-10.col-sm-offset-1.main-container.round-corners
+    .row
+      .col-sm-10.col-sm-offset-1
+        %h1.text-center Editing Work
 
-= render 'form'
+        = render 'form'
 
-= link_to 'Show', @my_work
-\|
-= link_to 'Back', my_works_path
+        = link_to 'Show', @my_work
+        \|
+        = link_to 'Back', my_works_path
