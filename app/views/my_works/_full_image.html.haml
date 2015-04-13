@@ -1,0 +1,7 @@
+.tab-content
+  - active = true
+  - @pictures.each_with_index do |pic,index|
+    .tab-pane{class: "#{index==0 ? 'active' : ''}", :role => "tabpanel", id: "#{pic.name_id}"}
+      .my-work-main-image.img-responsive
+        %img.picture-ajax{data: {id: "#{pic.id}", size: 'large'}}
+        - active = false
