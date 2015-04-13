@@ -1,9 +1,9 @@
 .row
   .col-sm-10.col-sm-offset-1
     #my-works-index
-      .rows
+      .row
         - @my_works.each do |my_work|
-          .col-lg-2.col-md-2.col-sm-3.col-xs-4
+          .col-lg-3.col-md-3.col-sm-3.col-xs-4
             .my-thumbnail.my-work-links
               .thumbnail-title.text-center
                 =truncate(my_work.title)

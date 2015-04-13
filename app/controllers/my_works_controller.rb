@@ -1,12 +1,11 @@
 class MyWorksController < ApplicationController
   before_action :set_my_work, only: [:show, :edit, :update, :destroy]
   before_action :authenticated_admin?, except: [:show_off, :show]
-  before_action :disabled
 
   # GET /my_works
   # GET /my_works.json
   def index
-    @my_works = MyWork.all.where.not(title: '').each_slice(3).to_a
+    @my_works = MyWork.all.where.not(title: '').order(:created_at)
   end
 
   def show_off
