@@ -3,10 +3,6 @@ class StaticPagesController < ApplicationController
 	def home
 	end
 
-	def admin_panel
-
-	end
-
 	def contact_me
 		if params["commit"] && params["commit"] == 'Send Question'
 			begin

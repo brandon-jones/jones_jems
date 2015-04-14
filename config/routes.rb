@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'contact_me', to: 'static_pages#contact_me'
   post 'contact_me', to: 'static_pages#contact_me'
   get 'about_me', to: 'static_pages#about_me'
-  get 'admin_panel', to: 'static_pages#admin_panel'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

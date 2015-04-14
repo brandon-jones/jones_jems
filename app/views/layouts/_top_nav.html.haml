@@ -36,11 +36,6 @@
               %li
                 %a{:href => "#{user_path(current_user.id)}"} 
                   Profile
-              - if current_user && current_user.admin?
-                %li.divider
-                %li
-                  %a{:href => "#{admin_panel_path}"} 
-                    Admin Panel
               %li.divider
               %li
                 %a{:href => "#{logout_path}"} 
