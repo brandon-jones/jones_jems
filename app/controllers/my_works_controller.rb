@@ -20,7 +20,7 @@ class MyWorksController < ApplicationController
   # GET /my_works/1.json
   def show
     @pictures = []
-    @pictures << @my_work.cover if @my_work.cover
+    @pictures << @my_work.cover if @my_work.cover?
     @pictures += @my_work.pictures.cropped.where.not(id: @my_work.cover.id) if @my_work.cover
   end
 
