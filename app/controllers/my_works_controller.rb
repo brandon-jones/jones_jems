@@ -1,11 +1,15 @@
 class MyWorksController < ApplicationController
   before_action :set_my_work, only: [:show, :edit, :update, :destroy]
-  before_action :authenticated_admin?, except: [:show_off, :show]
+  before_action :authenticated_admin?, except: [:index, :show]
 
   # GET /my_works
   # GET /my_works.json
   def index
-    @my_works = MyWork.all.where.not(title: '').order(:created_at)
+    if current_user && current_user.admin?
+      @my_works = MyWork.all.order(:created_at)
+    else
+      @my_works = MyWork.all.where(published: true).order(:created_at)
+    end
   end
 
   def show_off
@@ -16,18 +20,13 @@ class MyWorksController < ApplicationController
   # GET /my_works/1.json
   def show
     @pictures = []
-    @pictures << @my_work.cover
-    @pictures += @my_work.pictures.cropped.where.not(id: @my_work.cover.id)
+    @pictures << @my_work.cover if @my_work.cover
+    @pictures += @my_work.pictures.cropped.where.not(id: @my_work.cover.id) if @my_work.cover
   end
 
   # GET /my_works/new
   def new
-    @my_work = MyWork.where(published: false).first
-
-    @my_work = MyWork.create() unless @my_work
-
-    @pictures = @my_work.pictures
-
+    @my_work = MyWork.new
   end
 
   # GET /my_works/1/edit
@@ -39,15 +38,14 @@ class MyWorksController < ApplicationController
   # POST /my_works.json
   def create
     @my_work = MyWork.new(my_work_params)
-    @my_work.published = true
     respond_to do |format|
       if @my_work.save
-        if params[:images]
+        # if params[:images]
           # The magic is here ;)
-          params[:images].each { |image|
-            @my_work.pictures.create(image: image)
-          }
-        end
+          # params[:images].each { |image|
+            # @my_work.pictures.create(image: image)
+          # }
+        # end
         format.html { redirect_to @my_work, notice: 'My work was successfully created.' }
         format.json { render :show, status: :created, location: @my_work }
       else
@@ -91,6 +89,6 @@ class MyWorksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def my_work_params
-      params.require(:my_work).permit(:title, :tags, :description, :picture_id, :pictures)
+      params.require(:my_work).permit(:title, :published, :tags, :description, :picture_id, :pictures)
     end
 end

@@ -1,6 +1,10 @@
 .row
   .col-sm-10.col-sm-offset-1.main-container
     %h1.text-center.ntf My Work
+    - if current_user && current_user.admin?
+      .pull-right.new-work
+        %a.no-decoration.btn.btn-xs{href: "#{new_my_work_path}"}
+          %span.glyphicon.glyphicon-plus{title: 'New My Work'}
     .row.my-works-images
       - @my_works.each do |my_work|
         .col-lg-3.col-md-3.col-sm-3.col-xs-4
@@ -10,4 +14,7 @@
             - if current_user && current_user.admin?
               = render partial: 'admin_options', locals: { my_work: my_work }
             %a{ href: "/my_works/#{my_work.id}" }
-              %img.picture-ajax.my-work-title.img-responsive{data: {id: "#{my_work.cover.id}", size: 'medium', my_work_id: "#{my_work.id}"}}
+              - if my_work.cover
+                %img.picture-ajax.my-work-title.img-responsive{class: "#{my_work.published ? 'published' : 'unpublished'}", data: {id: "#{my_work.cover.id}", size: 'medium', my_work_id: "#{my_work.id}"}}
+              - else
+                = image_tag('image-not-found.png', class: "thumbnail-img #{my_work.published ? 'published' : 'unpublished'}")

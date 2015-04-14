@@ -1,9 +1,31 @@
+.unpublished {
+  border-width: 3px;
+  border-style: solid;
+  border-color: red;
+}
 #image_cropbox {
 	width: 100%;
 }
 
 .tabpanel {
 	overflow: hidden;
+}
+
+.new-work {
+  position: absolute;
+  top: .25em;
+  right: .25em;
+}
+
+a.no-decoration {
+  color: blue;
+  &:visited {
+    color: blue;
+  }
+  &:hover {
+    color: blue;
+    background-color: white;
+  }
 }
 
 .my-works-images {

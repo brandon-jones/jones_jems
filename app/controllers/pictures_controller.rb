@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_picture, only: [:edit, :update, :destroy]
   before_action :authenticated_admin?, except: :show
 
   # GET /pictures
@@ -13,6 +13,7 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
+    binding.pry
     respond_to do |format|
       format.html do
         if @picture.cropped

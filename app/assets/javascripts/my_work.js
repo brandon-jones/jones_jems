@@ -2,16 +2,29 @@ $(document).ready(function() {
   $('.tab-load').on("click", loadTabContents);
   $('.edit-image').on("click", editImage);
   $('.delete-image').on("click", deleteImage);
-  $('.my-work-title').on("mouseover", showFullTitle);
-  $('.my-work-title').on("mouseout", showFullTitle);
+  $('.my-work-title').on("mouseover", toggleFullTitle);
+  $('.my-work-title').on("mouseout", toggleFullTitle);
+  $('.publish-my-work').on("click", publishMyWork);
+
   loadImage();
 });
 
-hideFullTitle = function(e) {
-  console.log('tested');
+publishMyWork = function(e) {
+  var myWorkId = this.dataset.id
+  return $.ajax({
+      type: 'POST',
+      url: '/my_works/' + myWorkId + '/publish',
+      dataType: 'json',
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      success: function(data, textStatus) {
+        var base_name = '#'+data.image_file_name.replace(/\.[^/.]+$/, "")+'_'+data.id;
+        $(base_name+'-tr').hide();
+        $(base_name+'-tab').hide();
+      }
+    });
 };
 
-showFullTitle = function(e) {
+toggleFullTitle = function(e) {
   var fullItemId = '#my-work-title-'+this.dataset.myWorkId;
   var itemDesc = $(fullItemId);
 
@@ -39,7 +52,7 @@ deleteImage = function(e) {
       }
     });
   }
-}
+};
 
 updateMainImage = function(e) {
   var id = this.dataset.id;
