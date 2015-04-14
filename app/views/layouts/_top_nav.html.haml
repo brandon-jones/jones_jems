@@ -23,7 +23,7 @@
         %li{:role => "presentation", class: "#{'active' if selected == 'faqs_index' }"}
           %a{:href => "#{faqs_path}"}
             = t('faq')
-        %li{:role => "presentation", class: "#{'active' if selected == 'my_works_index' }"}
+        %li{:role => "presentation", class: "#{'active' if ( selected == 'my_works_index' || selected == 'my_works_show') }"}
           %a{:href => "#{my_works_path}"}
             = t('my_works')
       %ul.nav.navbar-nav.navbar-right
@@ -36,6 +36,11 @@
               %li
                 %a{:href => "#{user_path(current_user.id)}"} 
                   Profile
+              - if current_user && current_user.admin?
+                %li.divider
+                %li
+                  %a{:href => "#{admin_panel_path}"} 
+                    Admin Panel
               %li.divider
               %li
                 %a{:href => "#{logout_path}"} 

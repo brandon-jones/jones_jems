@@ -10,6 +10,10 @@
   margin-top: 2.5em;
 }
 
+#my-work-edit-images {
+	margin-top: 2.5em;
+}
+
 #pictures-tbody {
 	& td {
 		&.mini-pic {
@@ -47,6 +51,7 @@
 		width: 100%;
 		margin-right: auto;
 		margin-left: auto;
+		padding-bottom: .5em;
 	}
 
 .my-work-main-image img {

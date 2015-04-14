@@ -2,10 +2,23 @@
   .col-sm-10.col-sm-offset-1.main-container.round-corners
     .row
       .col-sm-10.col-sm-offset-1
-        %h1.text-center Editing Work
-
-        = render 'form'
-
-        = link_to 'Show', @my_work
+        %h1.text-center.ntf Editing Work
+        %div{:role => "tabpanel"}
+          / Nav tabs
+          %ul.nav.nav-tabs{:role => "tablist"}
+            %li.active{:role => "presentation"}
+              %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#form", :role => "tab"} My Work
+            %li{:role => "presentation"}
+              %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#images", :role => "tab"} Images
+          / Tab panes
+          .tab-content
+            #form.tab-pane.active{:role => "tabpanel"}
+              = render partial: 'form'
+            #images.tab-pane{:role => "tabpanel"}
+              = render partial: 'image_dropzone'
+        %br
+        = link_to 'Show', @my_work, class: 'btn btn-purple btn-xs'
         \|
-        = link_to 'Back', my_works_path
+        = link_to 'Back', my_works_path, class: 'btn btn-purple btn-xs'
+
+

@@ -18,41 +18,4 @@
     .controls
       = f.text_area :description, :class => 'form-control'
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-
-%form.dropzone#myAwesomeDropzone{:action => "/pictures"}
-%input{:type => "hidden", :value => "#{@my_work.id}", :id =>'gallery_id'}
-%input{:type => "hidden", :value => "#{@my_work.class.to_s}", :id =>'gallery_type'}
-%input{:type => "hidden", :value => "#{form_authenticity_token}", :id =>'session_key'}
-
-%div.tabpanel
-  / Nav tabs
-  %ul.nav.nav-tabs#ul-tab
-    %li.active
-      %a.tab-load.ajaxed{:href => "#pictures"} 
-        Pictures
-    - @my_work.pictures.each do |picture|
-      %li{id: "#{picture.name_id}-tab"}
-        %a.tab-load{:href => "#", class: "#{picture.cropped ? '' : 'not-cropped'}", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }} 
-          - if picture.title.present?
-            = picture.title
-          - else
-            =picture.image_file_name_no_ext
-  / Tab panes
-  .tab-content#tab-content
-    .tab-pane.active{id: "pictures"}
-      :javascript
-          $(document).ready(function() {
-            $.ajax({
-              type: "GET",
-              url: "/pictures?gallery_id="+"#{@my_work.id}"+"&gallery_type=MyWork",
-              success: function(data, textStatus, jqXHR) {
-                $('#pictures').html(data);
-                $('.delete-image').on("click", deleteImage);
-                return $('.update-main-image').on("change", updateMainImage);
-              }
-            });
-          });
-      = render partial: 'pictures/index', locals: { pictures: @pictures}
-    - @my_work.pictures.each do |picture| 
-      .tab-pane{id: "#{picture.name_id}-content"}
+    = f.submit nil, :class => 'btn btn-blue btn-large'
