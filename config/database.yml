@@ -20,7 +20,7 @@ development:
   host: localhost
   port: 5432
   encoding: unicode
-  database: JonesJems
+  database: JonesJems_development
   pool: 5
   username: bjones
   password:
@@ -37,10 +37,10 @@ test:
 
 production:
   adapter: postgresql
-  host: <%= ENV['JJ_DB_HOST'] %>
+  host: localhost
   port: 5432
   encoding: unicode
-  database: <%= ENV['JJ_DB_DATABASE'] %>
+  database: JonesJems
   pool: 5
   username: <%= ENV['JJ_DB_USER'] %>
   password: <%= ENV['JJ_DB_PASSWORD'] %>
