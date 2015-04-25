@@ -1,11 +1,16 @@
 .show
-  %button.btn.btn-default.edit-image.inline.pull-right{:type => "button", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }}
-    Edit Image Details
-  %p.inline
-    %b Title:
-    = picture.title
-  %p
-    %b Description:
-    = picture.description
-  %p
-    =image_tag  picture.image.url(:large)
+  .row
+    .col-md-10
+      %p
+        %b Title:
+        = picture.title
+      %p
+        %b Description:
+        = picture.description
+    .col-md-2
+      %button.btn.btn-default.edit-image{:type => "button", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }}
+        Edit Image Details
+  .row
+    .col-md-12
+      %p
+        =image_tag  picture.image.url(:large)

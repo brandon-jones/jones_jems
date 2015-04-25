@@ -19,9 +19,7 @@
   - else
     .form-group
       .row
-        .col-sm-8
-          = f.cropbox :image, :width => 600
-        .col-sm-4
-          = f.crop_preview :image, :width => 300
+        .col-md-12
+          = f.cropbox :image, :width => width.to_f
           %button.btn.btn-default.crop-image.form-control{"aria-expanded" => "false", :type => "button", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }}
             Crop Image

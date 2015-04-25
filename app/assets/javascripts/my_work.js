@@ -80,12 +80,13 @@ loadTabContents = function(e) {
   var currentTab = $(this);
   var id = this.dataset.id;
   var file_name = this.dataset.fileName;
+  var width = $('#myAwesomeDropzone').width();
   if (currentTab[0].classList.contains('ajaxed')) {
     return activateTab(file_name+"_"+id);
   } else {
     $.ajax({
       type: "GET",
-      url: "/pictures/"+id,
+      url: "/pictures/"+id+"?width="+width,
       success: function(data, textStatus, jqXHR) {
         $('#'+file_name+"_"+id+"-content").html((data));
         currentTab.addClass('ajaxed');
