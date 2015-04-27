@@ -23,6 +23,9 @@
         %li{:role => "presentation", class: "#{'active' if selected == 'faqs_index' }"}
           %a{:href => "#{faqs_path}"}
             = t('faq')
+        %li{:role => "presentation", class: "#{'active' if ( selected == 'my_works_index' || selected == 'my_works_show') }"}
+          %a{:href => "#{my_works_path}"}
+            = t('my_works')
       %ul.nav.navbar-nav.navbar-right
         - if current_user
           %li.dropdown

@@ -30,6 +30,9 @@ body {
   padding-bottom: .4em;
   margin-top: 0;
   margin-bottom: .285em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 
 html {
@@ -67,7 +70,7 @@ div {
 }
 
 #notice {
-  color: green;
+  color: #00a6ff;
 }
 
 .error, .login_error {
@@ -255,7 +258,8 @@ span.faq-goto {
 }
 
 .dropzone {
-  min-height: 150px;
+  margin-top: .5em;
+  min-height: 4em;
   border: 2px solid rgba(0, 0, 0, 0.3);
   background: white;
   padding: 20px 20px;

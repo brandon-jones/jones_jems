@@ -1,5 +1,5 @@
 class PicturesController < ApplicationController
-  before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :set_picture, only: [:edit, :update, :destroy, :show]
   before_action :authenticated_admin?, except: :show
 
   # GET /pictures
@@ -13,12 +13,13 @@ class PicturesController < ApplicationController
   # GET /pictures/1
   # GET /pictures/1.json
   def show
+    width = params["width"] || 600
     respond_to do |format|
       format.html do
         if @picture.cropped
           render partial: 'show', locals: { picture: @picture } and return
         else
-          render partial: 'form', locals: { picture: @picture } and return
+          render partial: 'form', locals: { picture: @picture, width: width } and return
         end
       end
       format.json { render json: @picture.to_json(:methods => [:thumbnail,:medium, :large])}
@@ -92,7 +93,7 @@ class PicturesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
-      @picture = Picture.find(params[:id])
+      @picture = Picture.find_by_id(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,0 +1,15 @@
+#my-work-show-info
+  - if current_user && current_user.admin?
+    .hidden-xs
+      = render partial: 'admin_options', locals: { my_work: @my_work }
+  %div.text-center.hidden-xs
+    %h3.text-center.remove-top-margin
+      = @my_work.title
+  - if @my_work.tags.length > 0
+    %p.text-center
+      - @my_work.tags.split(' ').each do |tag|
+        %span.badge= tag
+  - if @my_work.description.length > 0
+    %hr
+    %p
+      = @my_work.description

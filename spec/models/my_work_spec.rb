@@ -17,13 +17,8 @@ RSpec.describe MyWork, type: :model do
 			expect(@my_work.cover).to eq(nil)
 		end
 
-		it "expects a Picture returned if one present but not set" do
-			pic = FactoryGirl.create(:picture, my_work_id: @my_work.id, cropped: true)
-			expect(@my_work.cover).to eq(pic)
-		end
-
 		it "expects the correct Picture if one is set" do
-			pic = FactoryGirl.create(:picture, my_work_id: @my_work.id, cropped: true)
+			pic = FactoryGirl.create(:picture, gallery_id: @my_work.id, gallery_type: 'MyWork', cropped: true)
 			@my_work.update_attribute(:picture_id, pic.id)
 			expect(@my_work.cover).to eq(pic)
 		end

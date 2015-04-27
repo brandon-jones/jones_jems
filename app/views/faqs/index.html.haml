@@ -1,13 +1,16 @@
 .row
-  .col-sm-10.col-sm-offset-1
-    .main-container.round-corners.faq-main
-      %h1.text-center.ntf Frequenty Asked Questions
-      .row
-        .col-sm-10.col-sm-offset-1.faq-questions.faq-questions
-          - if current_user && current_user.admin?
-            = render partial: 'question', locals: { fq: Faq.new(question: 'NEW FAQ', answer: '/faqs/new') }
-          - @faqs.each do |fq|
-            = render partial: 'question', locals: { fq: fq }
+  .col-sm-10.col-sm-offset-1.main-container.faq-main
+    %h1.text-center.ntf Frequenty Asked Questions
+    - if current_user && current_user.admin?
+      .new-work
+        %a.no-decoration.btn.btn-xs{href: "#{new_my_work_path}"}
+          %span.glyphicon.glyphicon-plus{title: 'New My Work'}
+    .row
+      .col-sm-10.col-sm-offset-1.faq-questions.faq-questions
+        - @faqs.each do |fq|
+          = render partial: 'question', locals: { fq: fq }
+.row
+  .col-sm-10.col-sm-offset-1  
     #faq-section
       = render partial: 'faq'
     %br

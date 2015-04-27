@@ -1,9 +1,39 @@
+.unpublished {
+  border-width: 3px;
+  border-style: solid;
+  border-color: red;
+}
 #image_cropbox {
 	width: 100%;
 }
 
 .tabpanel {
 	overflow: hidden;
+}
+
+.new-work {
+  position: absolute;
+  top: .25em;
+  right: .25em;
+}
+
+a.no-decoration {
+  color: blue;
+  &:visited {
+    color: blue;
+  }
+  &:hover {
+    color: blue;
+    background-color: white;
+  }
+}
+
+.my-works-images {
+  margin-top: 2.5em;
+}
+
+#my-work-edit-images {
+	margin-top: 2.5em;
 }
 
 #pictures-tbody {
@@ -33,42 +63,29 @@
 
 #my-work-show-left-tabs {
 	padding: 0 0 0 0 !important;
-	overflow: hidden;
-}
-
-#my-works-index {
-	margin-top: 2em;
-}
-
-.my-work-show-col {
-	max-height: 10em;
 }
 
 .my-work-thumbnails {
 	margin-bottom: 0 !important;
 }
 
-#my-work-show {
-	padding: 1em;
-}
-
 .thumbnail-img {
 		width: 100%;
 		margin-right: auto;
 		margin-left: auto;
+		padding-bottom: .5em;
 	}
 
 .my-work-main-image img {
 	width: 100%;
 }
 
+#my-work-show {
+	padding: 1em;
+}
+
 #my-work-show-info {
-	background-color: white !important;
 	padding: 10px;
-	margin-right: 0;
-  height: 100%;
-  min-height: 100%;
-  display: block;
 }
 
 .drop-down-pic-options {
