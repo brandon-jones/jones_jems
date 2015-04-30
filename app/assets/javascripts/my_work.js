@@ -5,9 +5,19 @@ $(document).ready(function() {
   $('.my-work-title').on("mouseover", toggleFullTitle);
   $('.my-work-title').on("mouseout", toggleFullTitle);
   $('.publish-my-work').on("click", publishMyWork);
+  $('.jcrop-tracker').on("click", checkForCropWindow);
 
   loadImage();
 });
+
+checkForCropWindow = function(e) {
+  console.log('testing');
+  if ($('#image_crop_w').val() == "0" && $('#image_crop_h').val() == "0") {
+    $('button.crop-image')[0].disabled = true;
+  } else {
+    $('button.crop-image')[0].disabled = false;
+  }
+};
 
 publishMyWork = function(e) {
   var myWorkId = this.dataset.id
@@ -95,6 +105,8 @@ loadTabContents = function(e) {
         $('.crop-image').on("click", cropImage);
         $('.edit-image').unbind("click");
         $('.edit-image').on("click", editImage);
+        $('#image_cropbox').unbind("click");
+        $('#image_cropbox').on("click", checkForCropWindow);
         return init_papercrop();
       }
     });
