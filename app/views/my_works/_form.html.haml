@@ -20,6 +20,6 @@
   .form-group
     = f.label :description, class: 'control-label'
     .controls
-      = f.text_area :description, class: 'form-control'
+      = f.cktext_area :description, class: 'form-control', :ckeditor => {:uiColor => '#8400ff'}
   .form-actions
     = f.submit nil, class: 'btn btn-blue btn-large'

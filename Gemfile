@@ -36,6 +36,8 @@ gem 'dropzonejs-rails'
 
 gem 'mandrill-api', '~> 1.0.53'
 
+gem 'ckeditor'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

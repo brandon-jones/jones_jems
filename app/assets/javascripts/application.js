@@ -15,6 +15,7 @@
 //= require jquery.jcrop
 //= require papercrop
 //= require dropzone
+//= require ckeditor/init
 //= require_tree .
 
 $(document).ready(function() {

@@ -1,0 +1,50 @@
+.row
+  .col-sm-10.col-sm-offset-1.round-corners.main-container.contact-me-container
+    %h1.text-center.ntf Contact Me
+    - if current_user && current_user.admin?
+      .new-work
+        %a.no-decoration.btn.btn-xs{href: "#{contact_me_edit_path}"}
+          %span.glyphicon.glyphicon-cog{title: 'Edit Contact Me'}
+    .row
+      .col-sm-10.col-sm-offset-1
+        = @contact_me.description.html_safe
+        = form_tag("/contact_me", method: "post", class: "form-horizontal") do
+          = tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token)
+          %div.form-group
+            = label_tag(:name_label, "Name:", class: 'col-sm-2 control-label')
+            %div.col-sm-10
+              = text_field_tag(:name, params["name"], class: "form-control make-solid",:required => true)
+          
+          %div.form-group
+            = label_tag(:email_label, "Email:", class: 'col-sm-2 control-label')
+            %div.col-sm-10
+              = email_field_tag(:email, params["email"], class: "form-control",:required => true)
+          
+          %div.form-group
+            = label_tag(:phone_number_label, "Phone:", class: 'col-sm-2 control-label')
+            %div.col-sm-10
+              = telephone_field(:phone_number, params["phone"], class: "form-control")
+          
+          %div.form-group
+            = label_tag(:texting_ok_label, "Texting Ok:", class: 'col-sm-2 control-label')
+            %div.col-sm-10
+              #input
+                .radio-inline.radio-button
+                  = radio_button_tag(:texting_ok,'yes',false)
+                  Yes
+                .radio-inline.radio-button
+                  = radio_button_tag(:texting_ok,'no',true) 
+                  No
+          
+          %div.form-group
+            = label_tag(:question_label, "Reason for contact:", class: 'col-sm-2 control-label')
+            %div.col-sm-10
+              = text_area_tag(:question, params["body"], class: "form-control contact_me_body",:required => true)
+          %div.form-group
+            %div.col-sm-10.col-sm-offset-2
+              = recaptcha_tags
+
+          
+          %div.form-group
+            %div.col-sm-10.col-sm-offset-2.actions
+              = submit_tag("Send Question",class: 'btn btn-blue')
