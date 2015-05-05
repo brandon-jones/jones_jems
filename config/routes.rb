@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   get 'about_me/edit', to: 'about_me#edit'
   post 'about_me/update', to: 'about_me#update'
 
-
   get 'contact_me', to: 'contact_me#show'
   get 'contact_me/edit', to: 'contact_me#edit'
   post 'contact_me/update', to: 'contact_me#update'
+  post 'contact_me', to: 'contact_me#contact_me'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
