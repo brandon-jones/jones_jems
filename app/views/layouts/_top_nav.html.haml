@@ -14,10 +14,10 @@
       - puts params
       - selected = params["controller"] + "_" + params["action"]
       %ul.nav.navbar-nav
-        %li{:role => "presentation", class: "#{'active' if selected == 'static_pages_contact_me' }"}
+        %li{:role => "presentation", class: "#{'active' if selected == 'contact_me_show' }"}
           %a{:href => "/contact_me"}
             = t('contact_me')
-        %li{:role => "presentation", class: "#{'active' if selected == 'static_pages_about_me' }"}
+        %li{:role => "presentation", class: "#{'active' if selected == 'about_me_show' }"}
           %a{:href => "/about_me"}
             = t('about_me')
         %li{:role => "presentation", class: "#{'active' if selected == 'faqs_index' }"}
