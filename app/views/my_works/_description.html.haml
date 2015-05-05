@@ -5,10 +5,11 @@
   %div.text-center.hidden-xs
     %h3.text-center.remove-top-margin
       = @my_work.title
-  - if @my_work.tags.length > 0
+  - if @my_work.tags.length > 0 && current_user && current_user.admin?
     %p.text-center
-      - @my_work.tags.split(' ').each do |tag|
-        %span.badge= tag
+      - @my_work.tags.split(',').each do |tag|
+        %span.badge
+          = tag
   - if @my_work.description.length > 0
     %hr
     %p

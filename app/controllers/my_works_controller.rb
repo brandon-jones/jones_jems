@@ -12,16 +12,17 @@ class MyWorksController < ApplicationController
     end
   end
 
-  def show_off
-    @my_works = MyWork.all.where.not(title: '').order(:created_at)
-  end
-
   # GET /my_works/1
   # GET /my_works/1.json
   def show
-    @pictures = []
-    @pictures << @my_work.cover if @my_work.cover?
-    @pictures += @my_work.pictures.cropped.where.not(id: @my_work.cover.id) if @my_work.cover
+    if @my_work.published? || ( current_user && current_user.admin? )
+      @pictures = []
+      @pictures << @my_work.cover if @my_work.cover?
+      @pictures += @my_work.pictures.cropped.where.not(id: @my_work.cover.id) if @my_work.cover
+    else
+      flash[:notice] = "You must be an admin to visit that page"
+      redirect_to root_path
+    end
   end
 
   # GET /my_works/new
@@ -59,7 +60,7 @@ class MyWorksController < ApplicationController
   # PATCH/PUT /my_works/1.json
   def update
     @my_work.update_attribute(:published, true)
-    params["my_work"]["tags"] = params["my_work"]["tags"].split(' ').uniq.join(' ') if params["my_work"] && params["my_work"]["tags"] && params["my_work"]["tags"].present?
+    # params["my_work"]["tags"] = params["my_work"]["tags"].split(' ').uniq.join(' ') if params["my_work"] && params["my_work"]["tags"] && params["my_work"]["tags"].present?
     respond_to do |format|
       if @my_work.update(my_work_params)
         format.html { redirect_to @my_work, notice: 'My work was successfully updated.' }
