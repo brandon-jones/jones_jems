@@ -38,6 +38,8 @@ gem 'mandrill-api', '~> 1.0.53'
 
 gem 'ckeditor'
 
+gem 'unicorn', '~> 4.9.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -63,6 +65,10 @@ group :development, :test do
   gem 'meta_request'
   gem 'better_errors', '~> 1.1.0'
   gem 'binding_of_caller', '~> 0.7.2'
+
+  gem 'capistrano-rails'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-unicorn'
 end
 
 group :test do
