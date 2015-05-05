@@ -1,0 +1,12 @@
+.row
+  .col-sm-10.col-sm-offset-1.round-corners.main-container.about-me-container
+    %h1.text-center.ntf About Me
+    - if current_user && current_user.admin?
+      .new-work
+        %a.no-decoration.btn.btn-xs{href: "#{about_me_edit_path}"}
+          %span.glyphicon.glyphicon-cog{title: 'Edit About Me'}
+    .row
+      .col-sm-6.col-sm-offset-2
+        = @about_me.description.html_safe
+      .col-sm-2
+        = image_tag("mini_me.png", class: 'img-responsive')
