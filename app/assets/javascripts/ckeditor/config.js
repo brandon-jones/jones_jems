@@ -15,8 +15,7 @@ config.toolbar = [
   { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
   { name: 'colors', items: [ 'TextColor', 'BGColor' ] },
   { name: 'tools', items: [ 'Maximize', 'ShowBlocks' ] },
-  { name: 'others', items: [ '-' ] },
-  { name: 'about', items: [ 'About' ] }
+  { name: 'others', items: [ '-' ] }
 ];
 
 // Toolbar groups configuration.
@@ -34,11 +33,8 @@ config.toolbarGroups = [
   { name: 'styles' },
   { name: 'colors' },
   { name: 'tools' },
-  { name: 'others' },
-  { name: 'about' }
+  { name: 'others' }
 ];
-
-
 
   // ... rest of the original config.js  ...
 }

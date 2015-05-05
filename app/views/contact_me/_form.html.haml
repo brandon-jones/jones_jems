@@ -1,0 +1,9 @@
+= form_tag("#{contact_me_update_path}", html: {class: "form"}) do
+  .form-group
+    .row
+      .col-sm-12
+        = cktext_area :contact_me, :description, :ckeditor => {:uiColor => '#8400ff'}
+  .form-group
+    .row
+      .col-sm-4
+        %input{:type => "submit", :value => "Update Contact Me", class: 'btn btn-blue'}

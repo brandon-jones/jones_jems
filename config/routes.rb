@@ -13,9 +13,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'static_pages#home'
 
-  get 'contact_me', to: 'static_pages#contact_me'
-  post 'contact_me', to: 'static_pages#contact_me'
-  get 'about_me', to: 'static_pages#about_me'
+  # get 'contact_me', to: 'static_pages#contact_me'
+  # post 'contact_me', to: 'static_pages#contact_me'
+  get 'about_me', to: 'about_me#show'
+  get 'about_me/edit', to: 'about_me#edit'
+  post 'about_me/update', to: 'about_me#update'
+
+
+  get 'contact_me', to: 'contact_me#show'
+  get 'contact_me/edit', to: 'contact_me#edit'
+  post 'contact_me/update', to: 'contact_me#update'
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
