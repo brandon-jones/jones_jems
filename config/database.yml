@@ -40,7 +40,7 @@ production:
   host: localhost
   port: 5432
   encoding: unicode
-  database: jonesjems
+  database: JonesJems
   pool: 5
   username: <%= ENV['JJ_DB_USER'] %>
   password: <%= ENV['JJ_DB_PASSWORD'] %>
