@@ -37,7 +37,7 @@ test:
 
 production:
   adapter: postgresql
-  host: localhost
+  host: 127.0.0.1
   port: 5432
   encoding: unicode
   database: JonesJems
