@@ -37,10 +37,9 @@ test:
 
 production:
   adapter: postgresql
-  host: 127.0.0.1
   port: 5432
   encoding: unicode
-  database: JonesJems
+  database: jonesjems
   pool: 5
   username: <%= ENV['JJ_DB_USER'] %>
   password: <%= ENV['JJ_DB_PASSWORD'] %>
