@@ -204,7 +204,7 @@ createTr = function(info) {
 
 Dropzone.options.myAwesomeDropzone = {
   paramName: "picture[image]", // The name that will be used to transfer the file
-  maxFilesize: 5, // MB
+  maxFilesize: 10, // MB
   parallelUploads: 5,
   addRemoveLinks: true,
   acceptedFiles: 'image/jpg,image/jpeg,image/png',
