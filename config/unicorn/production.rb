@@ -1,5 +1,3 @@
-$ vim config/unicorn/production.rb
-
 root = "/home/deployer/apps/jones_jems/current"
 working_directory root
 
