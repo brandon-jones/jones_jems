@@ -10,7 +10,9 @@
     .form-group
       .row
         .col-sm-8
-          =image_tag  picture.image.url(:large)
+          = f.cropbox :image
+          %button.btn.btn-default.crop-image.form-control{"aria-expanded" => "false", :type => "button", data: { id: "#{picture.id}", file_name: "#{picture.image_file_name_no_ext}" }}
+            Crop Image
         .col-sm-4
           %p
             This image has been cropped already and can not be recropped.
