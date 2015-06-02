@@ -11,6 +11,10 @@ module JonesJems
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
     
     $CONTACT_ME_EMAIL = Rails.env == 'development' ? 'brandon.jones9@gmail.com' : 'colleen@jonesjems.com'
     # Settings in config/environments/* take precedence over those specified here.
