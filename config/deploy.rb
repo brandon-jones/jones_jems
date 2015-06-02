@@ -40,7 +40,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :use_sudo, false
 set :bundle_binstubs, nil
 
-after 'deploy:publishing', 'deploy:restart'
+after 'deploy:publishing', 'deploy:restart', 'assets:precompile'
 
 namespace :deploy do
 
@@ -66,9 +66,4 @@ namespace :ckeditor do
       FileUtils.cp file, nondigest, verbose: true
     end
   end
-end
-
-# auto run ckeditor:create_nondigest_assets after assets:precompile
-Rake::Task['assets:precompile'].enhance do
-  Rake::Task['ckeditor:create_nondigest_assets'].invoke
 end
