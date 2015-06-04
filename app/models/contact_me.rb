@@ -21,6 +21,6 @@ class ContactMe
 
   def file_path
     return "config/contact_me.txt" if Rails.env == 'development'
-    return Rails.root + "/shared/config/contact_me.txt"
+    return  File.expand_path("../shared/config/contact_me.txt")
   end
 end
