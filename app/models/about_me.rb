@@ -20,7 +20,6 @@ class AboutMe
   private
 
   def file_path
-    binding.pry
     return "config/about_me.txt" unless Rails.env == 'development'
     return "/home/deployer/apps/jones_jems/shared/config"
   end
