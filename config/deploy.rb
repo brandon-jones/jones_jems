@@ -49,7 +49,7 @@ namespace :deploy do
       invoke 'unicorn:reload'
       # Here we can do anything such as:
       # within release_path do
-      #   execute :rake, 'cache:clear'
+        execute :rake, 'cache:clear'
       # end
     end
   end
