@@ -20,7 +20,7 @@ class AboutMe
   private
 
   def file_path
-    return "config/about_me.txt" unless Rails.env == 'development'
+    return "config/about_me.txt" if Rails.env == 'development'
     return "/home/deployer/apps/jones_jems/shared/config/about_me.txt"
   end
 end
