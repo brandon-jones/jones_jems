@@ -20,7 +20,9 @@ class AboutMe
   private
 
   def file_path
+    puts "*"*800
+    puts Dir.pwd
     return "config/about_me.txt" if Rails.env == 'development'
-    return Dir.pwd + "../shared/config/about_me.txt"
+    return Dir.pwd + "/shared/config/about_me.txt"
   end
 end
