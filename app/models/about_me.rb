@@ -16,11 +16,4 @@ class AboutMe
     @description = data[:description]
     return self
   end
-
-  private
-
-  def file_path
-    return "config/about_me.txt" if Rails.env == 'development'
-    return "/home/deployer/apps/jones_jems/shared/config/about_me.txt"
-  end
 end
