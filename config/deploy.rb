@@ -40,7 +40,7 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 set :use_sudo, false
 set :bundle_binstubs, nil
 
-after 'deploy:publishing', 'deploy:restart'
+after 'deploy:publishing', 'deploy:restart', 'assets:precompile'
 
 namespace :deploy do
 
@@ -49,9 +49,21 @@ namespace :deploy do
       invoke 'unicorn:reload'
       # Here we can do anything such as:
       # within release_path do
-      #   execute :rake, 'cache:clear'
+        # execute :rake, 'cache:clear'
       # end
     end
   end
 
+end
+
+namespace :ckeditor do
+  desc 'Create nondigest versions of some ckeditor assets (e.g. moono skin png)'
+  task :create_nondigest_assets do
+    fingerprint = /\-[0-9a-f]{32}\./
+    for file in Dir['public/assets/ckeditor/contents-*.css', 'public/assets/ckeditor/skins/moono/*.png']
+      next unless file =~ fingerprint
+      nondigest = file.sub fingerprint, '.' # contents-0d8ffa186a00f5063461bc0ba0d96087.css => contents.css
+      FileUtils.cp file, nondigest, verbose: true
+    end
+  end
 end
